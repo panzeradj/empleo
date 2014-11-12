@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
+	
 	<title>Empleo</title>
 	<link rel="stylesheet" href="estilo.css">
 
@@ -18,7 +18,32 @@
 		// su nombre, latitud, longitud,
 		// el icono que le queramos asignar (ver más adelante)
 		// y un html totalmente personalizable a vuestro gusto, incluyendo imágenes y enlaces
-		var direcciones="<?php echo obtenerDatos();?>";
+		var datos="<?php echo obtenerDatos();?>";
+		var misPuntos = new Array();
+		var direccion = datos.split(";");
+		for (a in direccion)
+		{	
+				var resultado = direccion[a].split("?");
+				if(resultado[0]!= undefined && resultado[1]!= undefined )
+				{
+					console.log(resultado[0] );
+					console.log("1: "+resultado[1] );
+					var coordenadas = resultado[1].split("#");
+					if(coordenadas[0]!=undefined && coordenadas[1]!=undefined )
+					{
+						misPuntos[a] = [""+resultado[0],""+coordenadas[0], ""+coordenadas[1], "icon1", ""+resultado[0]];
+							
+					}
+				}
+				
+				
+		}
+
+		// creamos un array con la información de todos los puntos:
+		// su nombre, latitud, longitud,
+		// el icono que le queramos asignar (ver más adelante)
+		// y un html totalmente personalizable a vuestro gusto, incluyendo imágenes y enlaces
+	/*	var direcciones="<?php echo obtenerDatos();?>";
 		var misPuntos = new Array();
 		var resultado = direcciones.split(";");
 		var coordenadas = resultado[0].split("#");
@@ -29,7 +54,10 @@
 				misPuntos[i] = ["Sagrada Familia", ""+coordenadas[0], ""+coordenadas[1], "icon1", "<div>html</div>"];
 					
 			}
-		}	
+		}	*/
+		
+		
+		
 		
 		
 
@@ -54,16 +82,9 @@
 		    // Definimos los iconos a utilizar con sus medidas
 		    var icon1 = new google.maps.MarkerImage(
 		        "office-building.png",
-		        new google.maps.Size(20, 30)
+		        new google.maps.Size(30, 30)
 		    );
-		    var icon2 = new google.maps.MarkerImage(
-		        "http://www.vinx.info/uploads/editor/map-orange.png",
-		        new google.maps.Size(20, 30)
-		    );
-		    var icon3 = new google.maps.MarkerImage(
-		        "http://www.vinx.info/uploads/editor/map-red.png",
-		        new google.maps.Size(20, 30)
-		    );
+		    
 
 		    for(var i=0; i<locations.length; i++) {
 		        var elPunto = locations[i];
@@ -112,7 +133,8 @@
 					//echo $registro[0] .$registro[7]."<br>"; 
 					//$algo = str_replace($registro[7],"#","");
 					//echo $algo;
-					$direcciones= $direcciones.$registro[7].";"; 
+					$direcciones= $direcciones.$registro[0]."?".$registro[7].";"; 
+					//$direcciones= $direcciones.$registro[7].";"; 
 				}				
 			}				
 			fclose($f);
