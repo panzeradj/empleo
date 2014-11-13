@@ -46,11 +46,11 @@
 
 			function inicializaGoogleMaps() {
 			    // Coordenadas del centro de nuestro recuadro principal
-			    var x =41.652251;
-			    var y = -4.724532100000033;
+			    var x =41.991;
+			    var y = -2.024532100000033;
 
 			    var mapOptions = {
-			        zoom: 8,
+			        zoom: 7,
 			        center: new google.maps.LatLng(x, y),
 			        mapTypeId: google.maps.MapTypeId.ROADMAP
 			    }
@@ -125,18 +125,22 @@
 		}
 			obtenerDatos();	
 		?>
+			<div id="buscador"></div>
 			<div class="limpio"></div>
 
 		</header>
+		
+		<section id="registro">
+			<article class="centrado">
+				aaaaaaa
+			</article>
+		</section>
 		<section>
 			<aside>
 				
 			</aside>
-				<article id="capa-mapa">
-			
-		</article>
-		
-			
+
+		</article>		
 			<div class="limpio"></div>
 		</section>
 		<footer></footer>
