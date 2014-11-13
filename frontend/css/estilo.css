@@ -17,14 +17,26 @@ body{
 }
 
 header{	
-	height: 650px;
-	background: url(../images/girl.jpg) center no-repeat;
-	background-size: cover;
+	height: 450px;	
+	/*background: url(../images/girl.jpg) center no-repeat;
+	background-size: cover;*/
+}
+
+header #map_canvas{
+	position: absolute; 
+	height: 450px;	
+	top: 0; 
+	bottom: 0; 
+	left: 0; 
+	right: 0; 
+	z-index: 0;
+	clear: both;
 }
 
 nav{
 	position: fixed;
 	top: 0;	
+	z-index: 999;
 	width: 100%;
 	padding: 10px;
 	/*background: rgba(255,255,255,0.8);*/
@@ -64,9 +76,10 @@ nav ul li a:hover{
 }
 
 section{
-	margin: -50px auto;
+	margin: 0px auto;
 	height: 100%;
-	width: 80%;	
+	width: 100%;	
+	z-index: 10;
 }
 
 aside{
