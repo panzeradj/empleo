@@ -55,7 +55,7 @@ nav #logotipo{
 nav ul{
 	float: right;
 	display: inline;
-	margin-top: 20px;
+	margin-top: 25px;
 	padding: 10px;		
 }
 
@@ -127,8 +127,13 @@ section#welcome article{
 }
 
 section#welcome article h2{
-	font-size: 3em;
+	font-size: 3.6em;
+	margin-bottom: -30px;
+	font-weight: inherit;
+		color: #00b5cc;
 }
+
+
 
 section#welcome article h1{
 	font-size: 7em;
