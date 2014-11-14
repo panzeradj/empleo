@@ -24,9 +24,32 @@
 				</div>				
 			</nav>
 
-			<div id="buscadorPrincipal"></div>
 			<div id="map_canvas"></div>
 			<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+				<?php
+		function obtenerDatos(){			
+			$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/directorio/oficinas-ecyl-reducido/1284315242383.csv";
+			$f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");				
+			$titulos=fgets($f);
+			$titulos=fgets($f);
+			$campos=explode(";",$titulos);
+			
+			$numcampos=0;
+			foreach($campos as $indice=>$valor){					
+				$numcampos++;
+			}				
+			$direcciones = "";			
+			while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
+				if( $registro[7]!=""){					
+					$direcciones= $direcciones.$registro[0]."?".$registro[7].";"; 					
+				}				
+			}				
+			fclose($f);
+			//echo $direcciones;
+			return $direcciones;
+		}
+			obtenerDatos();	
+		?>
 
 		<script type="text/javascript">		
 			var datos="<?php echo obtenerDatos();?>";
@@ -61,8 +84,7 @@
 
 			var markers = Array();
 			var infowindowActivo = false;
-			function setGoogleMarkers(map, locations) {
-			    // Definimos los iconos a utilizar con sus medidas
+			function setGoogleMarkers(map, locations) {			    
 			    var icon1 = new google.maps.MarkerImage(
 			        "office-building.png",
 			        new google.maps.Size(30, 30)
@@ -76,7 +98,8 @@
 			            position: myLatLng,
 			            map: map,
 			            icon: eval(elPunto[3]),
-			            title: elPunto[0]
+			            title: elPunto[0],
+			            animation: google.maps.Animation.DROP
 			        });
 			        markers[i].infoWindow=new google.maps.InfoWindow({
 			            content: elPunto[4]
@@ -92,49 +115,29 @@
 
 			inicializaGoogleMaps();
 		</script>
-		<?php
-		function obtenerDatos(){
-			// Aqui se encuentra el fichero
-			$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/directorio/oficinas-ecyl-reducido/1284315242383.csv";
-			$f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");				
-			$titulos=fgets($f);
-			$titulos=fgets($f);
-			$campos=explode(";",$titulos);
+	
 			
-			$numcampos=0;
-			foreach($campos as $indice=>$valor){					
-				$numcampos++;
-			}				
-			$direcciones = "";
-			// El fichero es csv. El separador de campos es ';'
-			// Mientras hay líneas que leer...
-			while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
-				if( $registro[7]!=""){						
-					//$direcciones = $direcciones . $registro[4].",".$registro[1].";";
-					//$direcciones = $direcciones.$registro[7].";";		
-					//echo $registro[0] .$registro[7]."<br>"; 
-					//$algo = str_replace($registro[7],"#","");
-					//echo $algo;
-					$direcciones= $direcciones.$registro[0]."?".$registro[7].";"; 
-					//$direcciones= $direcciones.$registro[7].";"; 
-				}				
-			}				
-			fclose($f);
-			//echo $direcciones;
-			return $direcciones;
-		}
-			obtenerDatos();	
-		?>
-			<div id="buscador"></div>
 			<div class="limpio"></div>
 
 		</header>
 		
-		<section id="registro">
+		<section id="buscador">
 			<article class="centrado">
-				aaaaaaa
+				<form>
+					<input type="text" id="cuadroCiudad" placeholder="Cocinero, Soria">
+					<input type="submit" value="buscar">
+				</form>
 			</article>
 		</section>
+		<section id="welcome">
+			<div class="centrado">
+				<article>
+					<h2>Castilla y Leon <span>es</span></h2>					
+					<h1>FUTURO</h1>
+				</article>
+			</div>			
+		</section>
+
 		<section>
 			<aside>
 				

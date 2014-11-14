@@ -1,6 +1,11 @@
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
 *{
 	margin: 0px;
 	padding: 0px;
+	font-family: 'Open Sans', sans-serif;
+	color: #272822;
 }
 
 .limpio{
@@ -39,14 +44,8 @@ nav{
 	z-index: 999;
 	width: 100%;
 	padding: 10px;
-	/*background: rgba(255,255,255,0.8);*/
-	background: -moz-linear-gradient(top, rgba(18,33,43,0.6) 0%, rgba(125,185,232,0) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(18,33,43,0.6)), color-stop(100%,rgba(125,185,232,0))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, rgba(18,33,43,0.6) 0%,rgba(125,185,232,0) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, rgba(18,33,43,0.6) 0%,rgba(125,185,232,0) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, rgba(18,33,43,0.6) 0%,rgba(125,185,232,0) 100%); /* IE10+ */
-	background: linear-gradient(to bottom, rgba(18,33,43,0.6) 0%,rgba(125,185,232,0) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#12212b', endColorstr='#007db9e8',GradientType=0 ); /* IE6-9 */
+	background: rgba(255,255,255,0.9);
+	
 }
 
 nav #logotipo{	
@@ -67,7 +66,8 @@ nav ul li{
 
 nav ul li a{
 	padding: 10px;
-	color: #fff;	
+	color: #00b5cc;
+	font-weight: 700;
 	text-decoration: none;
 }
 
@@ -75,14 +75,62 @@ nav ul li a:hover{
 	color: #E07805;
 }
 
+
 section{
 	width: 100%;
-	background: #fff;
-	height: 300px;
+	background: #fff;	
 }
 
-section#registro{	
-	height: 64px;
-	background: #5db4e1;
+section#buscador{		
+	background: #00b5cc;
 }
 
+section#buscador form{
+	margin: 0 auto;	
+	padding: 20px;
+	text-align: center;
+}
+
+section#buscador form input{
+	padding: 7px;
+	font-size: 1em;
+}
+
+section#buscador form input[type="text"]{
+	width: 400px;
+}
+
+section#buscador form input[type="submit"]{
+	border: none;
+	background: #9e4f8a;
+	color: #fff;
+	width: 100px;
+}
+
+section#buscador form input[type="submit"]:hover{
+	border: none;
+	background: #C287B4;
+	color: #fff;
+	cursor: pointer;	
+}
+
+section#welcome{
+	height: 550px;
+	background: #fff url('../images/welcome.jpg') 60px no-repeat;
+}
+
+section#welcome article{
+	float: right;
+	width: 50%;
+	padding-top: 100px;
+	text-align: center;
+}
+
+section#welcome article h2{
+	font-size: 3em;
+}
+
+section#welcome article h1{
+	font-size: 7em;
+	font-weight: bolder;
+}
