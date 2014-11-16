@@ -3,6 +3,7 @@
 <html lang="es">
 	<head>		
 		<title>Proyecto CyL</title>
+		<meta charset="LATIN-1">
 		<link rel="stylesheet" href="css/estilo.css">
 			<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true">
 		</script>
@@ -132,7 +133,8 @@
 		<section id="welcome">
 			<div class="centrado">
 				<article>
-					<h2>Castilla y Leon <span>es</span></h2>					
+					<h2>Castilla y Leon</h2>
+					<h3>eres t&uacute; , es t&uacute;</h3>									
 					<h1>FUTURO</h1>
 				</article>
 			</div>			

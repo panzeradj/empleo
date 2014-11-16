@@ -22,9 +22,7 @@ body{
 }
 
 header{	
-	height: 550px;	
-	/*background: url(../images/girl.jpg) center no-repeat;
-	background-size: cover;*/
+	height: 550px;		
 }
 
 header #map_canvas{
@@ -116,7 +114,8 @@ section#buscador form input[type="submit"]:hover{
 
 section#welcome{
 	height: 550px;
-	background: #fff url('../images/welcome.jpg') 60px no-repeat;
+	background: #fff url('../images/welcome.jpg') no-repeat;
+	background-position: 300px 0px;
 }
 
 section#welcome article{
