@@ -120,9 +120,9 @@ section#welcome{
 
 section#welcome article{
 	float: right;
-	width: 50%;
+	width: 470px;
 	padding-top: 100px;
-	text-align: center;
+	text-align: center;	
 }
 
 section#welcome article h2{
