@@ -26,8 +26,8 @@
 			</nav>
 
 			<div id="map_canvas"></div>
-			<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
-				<?php
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+	<?php
 		function obtenerDatos(){			
 			$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/directorio/oficinas-ecyl-reducido/1284315242383.csv";
 			$f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");				
@@ -50,7 +50,7 @@
 			return $direcciones;
 		}
 			obtenerDatos();	
-		?>
+	?>
 
 		<script type="text/javascript">		
 			var datos="<?php echo obtenerDatos();?>";
@@ -134,8 +134,9 @@
 			<div class="centrado">
 				<article>
 					<h2>Castilla y Leon</h2>
-					<h3>eres t&uacute; , es t&uacute;</h3>									
+					<h3>es empleo , eres t&uacute; , es</h3>									
 					<h1>FUTURO</h1>
+					<a href="#" class="boton letraGrande"> Inscribete ahora </a>
 				</article>
 			</div>			
 		</section>

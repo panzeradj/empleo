@@ -126,15 +126,42 @@ section#welcome article{
 }
 
 section#welcome article h2{
-	font-size: 3.6em;
-	margin-bottom: -30px;
+	font-size: 4.4em;
+	margin-bottom: -10px;
 	font-weight: inherit;
 		color: #00b5cc;
 }
 
+section#welcome article h3{
+	font-size: 2.5em;
+	margin-bottom: -30px
+}
+
+.letraGrande{
+	font-size: 2.8em;
+}
+
+.boton{
+	border: none;
+	background: #9e4f8a;
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+	display: block;
+	text-transform: uppercase;
+}
+
+.boton:hover{
+	border: none;
+	background: #C287B4;
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+}
 
 
 section#welcome article h1{
-	font-size: 7em;
+	font-size: 7.2em;
 	font-weight: bolder;
+	margin: -10px
 }
