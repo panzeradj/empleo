@@ -14,8 +14,8 @@
 }
 
 .centrado{
-	width: 70%;
-	margin: 0 auto;
+	width: 960px;
+	margin: 0 auto;	
 }
 
 .letraGrande{
@@ -49,6 +49,12 @@ header{
 	height: 550px;		
 }
 
+header#jobs{
+	background: url('../images/work.jpg') center;
+	height: 340px;
+}
+
+
 header #map_canvas{
 	position: absolute; 
 	height: 550px;	
@@ -59,6 +65,8 @@ header #map_canvas{
 	z-index: 0;
 	clear: both;
 }
+
+
 
 nav{
 	position: fixed;
@@ -119,6 +127,7 @@ section#buscador form input{
 
 section#buscador form input[type="text"]{
 	width: 400px;
+	border: 1px solid #E2E3DF;
 }
 
 section#buscador form input[type="submit"]{

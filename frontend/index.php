@@ -16,11 +16,8 @@
 				<div class="centrado">
 					<div id="logotipo"><img src="images/junta.png"></div>
 					<ul>
-						<li><a href="#">Enlace</a></li>
-						<li><a href="#">Enlace</a></li>
-						<li><a href="#">Enlace</a></li>
-						<li><a href="#">Enlace</a></li>
-						<li><a href="#">Enlace</a></li>
+						<li><a href="index.php">Inicio</a></li>
+						<li><a href="jobs.php">Empleo</a></li>						
 					</ul>					
 				</div>				
 			</nav>
