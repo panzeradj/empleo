@@ -5,7 +5,8 @@
 	margin: 0px;
 	padding: 0px;
 	font-family: 'Open Sans', sans-serif;
-	color: #272822;
+	
+	color: #3C3C3C;
 }
 
 .limpio{
@@ -16,6 +17,29 @@
 	width: 70%;
 	margin: 0 auto;
 }
+
+.letraGrande{
+	font-size: 2.8em;
+}
+
+.boton{
+	border: none;
+	background: #9e4f8a;
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+	display: block;
+	text-transform: uppercase;
+}
+
+.boton:hover{
+	border: none;
+	background: #C287B4;
+	color: #fff;
+	cursor: pointer;
+	text-decoration: none;
+}
+
 
 body{
 	background: #444444;
@@ -41,9 +65,8 @@ nav{
 	top: 0;	
 	z-index: 999;
 	width: 100%;
-	padding: 10px;
-	background: rgba(255,255,255,0.9);
-	
+	padding: 2px;
+	background: rgba(255,255,255,1);	
 }
 
 nav #logotipo{	
@@ -137,31 +160,34 @@ section#welcome article h3{
 	margin-bottom: -30px
 }
 
-.letraGrande{
-	font-size: 2.8em;
-}
-
-.boton{
-	border: none;
-	background: #9e4f8a;
-	color: #fff;
-	cursor: pointer;
-	text-decoration: none;
-	display: block;
-	text-transform: uppercase;
-}
-
-.boton:hover{
-	border: none;
-	background: #C287B4;
-	color: #fff;
-	cursor: pointer;
-	text-decoration: none;
-}
-
-
 section#welcome article h1{
 	font-size: 7.2em;
 	font-weight: bolder;
 	margin: -10px
+}
+
+/*section#social{
+	background: #9FA392;
+	height: 100px;
+}*/
+
+
+section#empleo h1{
+	padding: 10px;
+	font-weight: 400;
+	font-size: 2.5em;
+}
+
+section#empleo article{
+	border-bottom: 1px solid #E7E8E3;
+	padding: 10px;
+}
+
+section#empleo article h2{
+	color: #00b5cc;
+	font-weight: 400;
+}
+
+section#empleo article p{
+	color: #3C3C3C;
 }
