@@ -31,11 +31,12 @@
 			$numcampos++;
 		}
 		//echo "</tr>";
-
+		$contador=0;
 		// El fichero es csv. El separador de campos es ';'
 		// Mientras hay líneas que leer...
 		while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
 			//echo "<tr>";
+			$contador++;
 			$registro[8]=str_replace(',','.',$registro[8]);
 			$registro[9]=str_replace(',','.',$registro[9]);
 			//echo $registro[9]."<br>";
@@ -43,7 +44,7 @@
 			echo $ordensql."<br>";
 			$conexion->query($ordensql);
 		}
-
+		echo "<br>".$contador;
 		// Cerrando la tabla
 		//echo "</table>";
 

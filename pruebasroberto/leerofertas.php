@@ -18,6 +18,7 @@
         // el icono que le queramos asignar (ver más adelante)
         // y un html totalmente personalizable a vuestro gusto, incluyendo imágenes y enlaces
         var datos="<?php echo obtenerDatos();?>";
+        document.write(datos);
         var misPuntos = new Array();
         var direccion = datos.split(";");
         for (a in direccion)
@@ -25,12 +26,26 @@
                 var resultado = direccion[a].split("?");
                 if(resultado[0]!= undefined && resultado[1]!= undefined )
                 {
-                    console.log(resultado[0] );
-                    console.log("1: "+resultado[1] );
+                  
+                   /*$conexion = new mysqli("127.0.0.1", "root", "root", "emlpleo");
+
+                   //select para sacar las dos coordenadas 
+                   ordensql="SELECT longitud, latitud FROM municipios  where municipio='resultado[1]'";
+
+                   if($chorizo=$conexion->query($ordensql))
+                    {
+                                                
+                        while ($registro = $chorizo->fetch_array()) {
+                            $cordenadas=$regisro[0]."#".$registro[1];
+                        }
+                    }
+                        
+                   $conexion->close($conexion);*/
+                   
                     var coordenadas = resultado[1].split("#");
                     if(coordenadas[0]!=undefined && coordenadas[1]!=undefined )
                     {
-                        misPuntos[a] = [""+resultado[0],""+coordenadas[0], ""+coordenadas[1], "icon1", ""+resultado[0] + "<a href='https://www.google.es/maps/@42.0231492,-3.2865981,3a,84.1y,316.85h,83.72t/data=!3m4!1e1!3m2!1s86y83qtj91fARjkExivvHw!2e0!6m1!1e1'>imagen</a>"];
+                        misPuntos[a] = [""+resultado[0],""+coordenadas[0], ""+coordenadas[1], "icon1", ""+resultado[0]];
                         function degreesToRadian(numDegrees) {  
                             return numDegrees * Math.PI / 180;  
                         } 
@@ -46,7 +61,7 @@
                     }
                 }
                 
-                
+             
         }
 
       
@@ -99,36 +114,34 @@
 
         inicializaGoogleMaps();
     </script>
+
     <?php
         function obtenerDatos(){
-            // Aqui se encuentra el fichero
-            $fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/directorio/oficinas-ecyl-reducido/1284315242383.csv";
-            $f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");             
-            $titulos=fgets($f);
-            $titulos=fgets($f);
-            $campos=explode(";",$titulos);
-            
-            $numcampos=0;
-            foreach($campos as $indice=>$valor){                    
-                $numcampos++;
-            }               
-            $direcciones = "";
-            // El fichero es csv. El separador de campos es ';'
-            // Mientras hay líneas que leer...
-            while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
-                if( $registro[7]!=""){                      
-                    //$direcciones = $direcciones . $registro[4].",".$registro[1].";";
-                    //$direcciones = $direcciones.$registro[7].";";     
-                    //echo $registro[0] .$registro[7]."<br>"; 
-                    //$algo = str_replace($registro[7],"#","");
-                    //echo $algo;
-                    $direcciones= $direcciones.$registro[0]."?".$registro[7].";"; 
-                    //$direcciones= $direcciones.$registro[7].";"; 
-                }               
-            }               
-            fclose($f);
-            //echo $direcciones;
-            return $direcciones;
+        // Aqui se encuentra el fichero
+        $fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/empleo/ofertas-empleo/1284354353012.csv";
+        $f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");             
+        $titulos=fgets($f);
+        $titulos=fgets($f);
+        $campos=explode(";",$titulos);
+
+        $numcampos=0;
+        foreach($campos as $indice=>$valor){                    
+            $numcampos++;
+        }               
+        $direcciones = "";
+        
+        while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
+            if($registro[7]!='')
+            {   
+              
+                 $direcciones= $direcciones.$registro[0]."?".$registro[7].";"; 
+                
+            }
+                               
+        }               
+        fclose($f);
+        
+        return $direcciones;
         }
         obtenerDatos(); 
     ?>
@@ -143,12 +156,13 @@
     </header>
     <section>
         <article id="capa-mapa">
-            <div id="controles">
-    <label><input type="checkbox" name="aeropuertos" value="Aeropuerto" class="control" checked="checked"/> Aeropuertos</label><br />
-    <label><input type="checkbox" name="estaciones" value="Estacion de autobus" class="control" checked="checked"/> Estaciones de autobus</label><br />
-</div>
+            
         </article>
     </section>
     <footer></footer>
 </body>
 </html>
+    
+
+
+
