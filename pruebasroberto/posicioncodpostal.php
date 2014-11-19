@@ -44,12 +44,8 @@
                         console.log(12722 * Math.asin(Math.sqrt(result)));  
                             
                     }
-                }
-                
-                
-        }
-
-      
+                }                               
+        }     
         function inicializaGoogleMaps() {
             // Coordenadas del centro de nuestro recuadro principal
             var x =41.652251;
@@ -58,7 +54,7 @@
             var mapOptions = {
                 zoom: 6,
                 center: new google.maps.LatLng(x, y),
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                mapTypeId: google.maps.MapTypeId.HYBRID 
             }
 
             var map = new google.maps.Map(document.getElementById("capa-mapa"), mapOptions);
@@ -142,11 +138,7 @@
         <h1></h1>
     </header>
     <section>
-        <article id="capa-mapa">
-            <div id="controles">
-    <label><input type="checkbox" name="aeropuertos" value="Aeropuerto" class="control" checked="checked"/> Aeropuertos</label><br />
-    <label><input type="checkbox" name="estaciones" value="Estacion de autobus" class="control" checked="checked"/> Estaciones de autobus</label><br />
-</div>
+     
         </article>
     </section>
     <footer></footer>
