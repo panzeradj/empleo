@@ -24,10 +24,6 @@
 					</ul>					
 				</div>				
 			</nav>
-	
-			
-			
-
 		</header>
 		
 		<section id="buscador">

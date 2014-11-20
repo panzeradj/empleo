@@ -22,38 +22,38 @@
 				</div>				
 			</nav>
 
-			<div id="map_canvas"></div>
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
-	<?php
-		function obtenerDatos(){			
-			$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/directorio/oficinas-ecyl-reducido/1284315242383.csv";
-			$f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");				
-			$titulos=fgets($f);
-			$titulos=fgets($f);
-			$campos=explode(";",$titulos);
-			
-			$numcampos=0;
-			foreach($campos as $indice=>$valor){					
-				$numcampos++;
-			}				
-			$direcciones = "";			
-			while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
-				if( $registro[7]!=""){					
-					$direcciones= $direcciones.$registro[0]."?".$registro[7].";"; 					
+		<div id="map_canvas"></div>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+		<?php
+			function obtenerDatos(){			
+				$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/directorio/oficinas-ecyl-reducido/1284315242383.csv";
+				$f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");				
+				$titulos=fgets($f);
+				$titulos=fgets($f);
+				$campos=explode(";",$titulos);
+				
+				$numcampos=0;
+				foreach($campos as $indice=>$valor){					
+					$numcampos++;
 				}				
-			}				
-			fclose($f);
-			//echo $direcciones;
-			return $direcciones;
-		}
-			obtenerDatos();	
-	?>
+				$direcciones = "";			
+				while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
+					if( $registro[7]!=""){					
+						$direcciones= $direcciones.$registro[0]."?".$registro[7].";"; 					
+					}				
+				}				
+				fclose($f);
+				//echo $direcciones;
+				return $direcciones;
+			}
+				obtenerDatos();	
+		?>
 
-		<script type="text/javascript">		
-			var datos="<?php echo obtenerDatos();?>";
-			var misPuntos = new Array();
-			var direccion = datos.split(";");
-			for (a in direccion){	
+			<script type="text/javascript">		
+				var datos="<?php echo obtenerDatos();?>";
+				var misPuntos = new Array();
+				var direccion = datos.split(";");
+				for (a in direccion){	
 					var resultado = direccion[a].split("?");
 					if(resultado[0]!= undefined && resultado[1]!= undefined ){
 						console.log(resultado[0] );
@@ -63,56 +63,57 @@
 							misPuntos[a] = [""+resultado[0],""+coordenadas[0], ""+coordenadas[1], "icon1", ""+resultado[0]];							
 						}
 					}					
-			}
+				}
 
-			function inicializaGoogleMaps() {
-			    // Coordenadas del centro de nuestro recuadro principal
-			    var x =41.991;
-			    var y = -2.024532100000033;
+				function inicializaGoogleMaps() {
+				    // Coordenadas del centro de nuestro recuadro principal
+				    var x =41.991;
+				    var y = -2.024532100000033;
 
-			    var mapOptions = {
-			        zoom: 7,
-			        center: new google.maps.LatLng(x, y),
-			        mapTypeId: google.maps.MapTypeId.ROADMAP
-			    }
+				    var mapOptions = {
+				        zoom: 7,
+				        center: new google.maps.LatLng(x, y),
+				        mapTypeId: google.maps.MapTypeId.ROADMAP
+				    }
 
-			    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-			    setGoogleMarkers(map, misPuntos);
-			}
+				    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+				    setGoogleMarkers(map, misPuntos);
+				}
 
-			var markers = Array();
-			var infowindowActivo = false;
-			function setGoogleMarkers(map, locations) {			    
-			    var icon1 = new google.maps.MarkerImage(
-			        "office-building.png",
-			        new google.maps.Size(30, 30)
-			    );		    
+				var markers = Array();
+				var infowindowActivo = false;
+				
+				function setGoogleMarkers(map, locations) {			    
+				    var icon1 = new google.maps.MarkerImage(
+				        "office-building.png",
+				        new google.maps.Size(30, 30)
+				    );		    
 
-			    for(var i=0; i<locations.length; i++) {
-			        var elPunto = locations[i];
-			        var myLatLng = new google.maps.LatLng(elPunto[1], elPunto[2]);
+				    for(var i=0; i<locations.length; i++) {
+				        var elPunto = locations[i];
+				        var myLatLng = new google.maps.LatLng(elPunto[1], elPunto[2]);
 
-			        markers[i]=new google.maps.Marker({
-			            position: myLatLng,
-			            map: map,
-			            icon: eval(elPunto[3]),
-			            title: elPunto[0],
-			            animation: google.maps.Animation.DROP
-			        });
-			        markers[i].infoWindow=new google.maps.InfoWindow({
-			            content: elPunto[4]
-			        });
-			        google.maps.event.addListener(markers[i], 'click', function(){      
-			            if(infowindowActivo)
-			                infowindowActivo.close();
-			            infowindowActivo = this.infoWindow;
-			            infowindowActivo.open(map, this);
-			        });
-			    }
-			}
+				        markers[i]=new google.maps.Marker({
+				            position: myLatLng,
+				            map: map,
+				            icon: eval(elPunto[3]),
+				            title: elPunto[0],
+				            animation: google.maps.Animation.DROP
+				        });
+				        markers[i].infoWindow=new google.maps.InfoWindow({
+				            content: elPunto[4]
+				        });
+				        google.maps.event.addListener(markers[i], 'click', function(){      
+				            if(infowindowActivo)
+				                infowindowActivo.close();
+				            infowindowActivo = this.infoWindow;
+				            infowindowActivo.open(map, this);
+				        });
+				    }
+				}
 
-			inicializaGoogleMaps();
-		</script>
+				inicializaGoogleMaps();
+			</script>
 	
 			
 			<div class="limpio"></div>
@@ -150,9 +151,9 @@
 				<article>
 					<h2>Titulo empleo</h2>
 					<p>
-					Descripcion, Descripcion, Descripcion, Descripcion,
-					Descripcion, Descripcion, Descripcion,
-					Descripcion, Descripcion, Descripcion, Descripcion
+						Descripcion, Descripcion, Descripcion, Descripcion,
+						Descripcion, Descripcion, Descripcion,
+						Descripcion, Descripcion, Descripcion, Descripcion
 					</p>
 					<a href="#">Enlace a la oficina de empleo</a>
 					<p class="fecha">November 11, 2014</p>
@@ -160,9 +161,9 @@
 				<article>
 					<h2>Titulo empleo</h2>
 					<p>
-					Descripcion, Descripcion, Descripcion, Descripcion,
-					Descripcion, Descripcion, Descripcion,
-					Descripcion, Descripcion, Descripcion, Descripcion
+						Descripcion, Descripcion, Descripcion, Descripcion,
+						Descripcion, Descripcion, Descripcion,
+						Descripcion, Descripcion, Descripcion, Descripcion
 					</p>
 					<a href="#">Enlace a la oficina de empleo</a>
 					<p class="fecha">November 11, 2014</p>
@@ -170,9 +171,9 @@
 				<article>
 					<h2>Titulo empleo</h2>
 					<p>
-					Descripcion, Descripcion, Descripcion, Descripcion,
-					Descripcion, Descripcion, Descripcion,
-					Descripcion, Descripcion, Descripcion, Descripcion
+						Descripcion, Descripcion, Descripcion, Descripcion,
+						Descripcion, Descripcion, Descripcion,
+						Descripcion, Descripcion, Descripcion, Descripcion
 					</p>
 					<a href="#">Enlace a la oficina de empleo</a>
 					<p class="fecha">November 11, 2014</p>

@@ -4,8 +4,7 @@
 *{
 	margin: 0px;
 	padding: 0px;
-	font-family: 'Open Sans', sans-serif;
-	
+	font-family: 'Open Sans', sans-serif;	
 	color: #3C3C3C;
 }
 
@@ -40,7 +39,6 @@
 	text-decoration: none;
 }
 
-
 body{
 	background: #444444;
 }
@@ -54,7 +52,6 @@ header#jobs{
 	height: 340px;
 }
 
-
 header #map_canvas{
 	position: absolute; 
 	height: 550px;	
@@ -65,8 +62,6 @@ header #map_canvas{
 	z-index: 0;
 	clear: both;
 }
-
-
 
 nav{
 	position: fixed;
@@ -174,12 +169,6 @@ section#welcome article h1{
 	font-weight: bolder;
 	margin: -10px
 }
-
-/*section#social{
-	background: #9FA392;
-	height: 100px;
-}*/
-
 
 section#empleo h1{
 	padding: 10px;
