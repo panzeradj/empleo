@@ -4,26 +4,12 @@
 	<head>		
 		<title>Proyecto CyL</title>
 		<meta charset="LATIN-1">
-		<link rel="stylesheet" href="css/estilo.css">
-			<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true">
-		</script>
-		
-	
+		<link rel="stylesheet" href="style/estilo.css">	
 	</head>
 	<body>
 		<header id="jobs">			
-			<nav>
-				<div class="centrado">
-					<div id="logotipo"><img src="images/junta.png"></div>
-					<ul>
-						<li><a href="#">Enlace</a></li>
-						<li><a href="#">Enlace</a></li>
-						<li><a href="#">Enlace</a></li>
-						<li><a href="#">Enlace</a></li>
-						<li><a href="#">Enlace</a></li>
-					</ul>					
-				</div>				
-			</nav>
+			<!-- Menu Superior --> 
+			<?php include('parts/header.php'); ?>
 		</header>
 		
 		<section id="buscador">
@@ -35,38 +21,33 @@
 			</article>
 		</section>
 		<section id="empleo">
-			<div class="centrado">
+			<div class="centrado">		
 				<h1>Ofertas de Empleo</h1>
-				<article>
-					<h2>Titulo empleo</h2>
-					<p>
-					Descripcion, Descripcion, Descripcion, Descripcion,
-					Descripcion, Descripcion, Descripcion,
-					Descripcion, Descripcion, Descripcion, Descripcion
-					</p>
-					<a href="#">Enlace a la oficina de empleo</a>
-					<p class="fecha">November 11, 2014</p>
-				</article>		
-				<article>
-					<h2>Titulo empleo</h2>
-					<p>
-					Descripcion, Descripcion, Descripcion, Descripcion,
-					Descripcion, Descripcion, Descripcion,
-					Descripcion, Descripcion, Descripcion, Descripcion
-					</p>
-					<a href="#">Enlace a la oficina de empleo</a>
-					<p class="fecha">November 11, 2014</p>
-				</article>
-				<article>
-					<h2>Titulo empleo</h2>
-					<p>
-					Descripcion, Descripcion, Descripcion, Descripcion,
-					Descripcion, Descripcion, Descripcion,
-					Descripcion, Descripcion, Descripcion, Descripcion
-					</p>
-					<a href="#">Enlace a la oficina de empleo</a>
-					<p class="fecha">November 11, 2014</p>
-				</article>	
+				<?php            
+				     // Aqui se encuentra el fichero
+				    $fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/empleo/ofertas-empleo/1284354353012.csv";
+				    $f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");             
+				    $titulos=fgets($f);
+				    $titulos=fgets($f);
+				    $campos=explode(";",$titulos);
+				    
+				    $numcampos=0;
+				    foreach($campos as $indice=>$valor){                    
+				        $numcampos++;
+				    }               
+				    $direcciones = "";				    
+				    while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
+				        if( $registro[7]!=""){                    
+				         	echo "<article>";
+				           	echo "<h2>".$registro[0]." <span class=provincia> - ".$registro[2]."</span></h2>";				           	
+				           	echo "<p>".$registro[4]."</p>";
+				           	echo "<a href=".$registro[10]." class=enlaceOficina >Enlace oficina de empleo</a>";                   				
+				       		echo "</article>";
+				        }               
+				    }               
+				    fclose($f);
+				?>
+
 			</div>	
 			<div class="limpio"></div>
 		</section>

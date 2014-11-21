@@ -4,23 +4,13 @@
 	<head>		
 		<title>Proyecto CyL</title>
 		<meta charset="LATIN-1">
-		<link rel="stylesheet" href="css/estilo.css">
-			<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true">
-		</script>
-		
-	
+		<link rel="stylesheet" href="style/estilo.css">
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>	
 	</head>
 	<body>
-		<header>			
-			<nav>
-				<div class="centrado">
-					<div id="logotipo"><img src="images/junta.png"></div>
-					<ul>
-						<li><a href="index.php">Inicio</a></li>
-						<li><a href="jobs.php">Empleo</a></li>						
-					</ul>					
-				</div>				
-			</nav>
+		<header>				
+			<!-- Menu Superior --> 
+			<?php include('parts/header.php'); ?>
 
 		<div id="map_canvas"></div>
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>

@@ -39,6 +39,15 @@
 	text-decoration: none;
 }
 
+.provincia{
+	color: #535353;
+}
+
+.enlaceOficina:hover{
+	color: #00b5cc;
+}
+
+
 body{
 	background: #444444;
 }
@@ -130,6 +139,7 @@ section#buscador form input[type="submit"]{
 	background: #9e4f8a;
 	color: #fff;
 	width: 100px;
+	text-transform: uppercase;
 }
 
 section#buscador form input[type="submit"]:hover{
@@ -153,39 +163,66 @@ section#welcome article{
 }
 
 section#welcome article h2{
-	font-size: 4.4em;
+	font-size: 4.4em!important;
 	margin-bottom: -10px;
 	font-weight: inherit;
 		color: #00b5cc;
 }
 
 section#welcome article h3{
-	font-size: 2.5em;
+	font-size: 2.5em!important;
 	margin-bottom: -30px
 }
 
 section#welcome article h1{
-	font-size: 7.2em;
+	font-size: 7.2em!important;
 	font-weight: bolder;
 	margin: -10px
 }
 
-section#empleo h1{
-	padding: 10px;
+section h1{
+	padding: 10px 0px;
 	font-weight: 400;
 	font-size: 2.5em;
 }
 
-section#empleo article{
-	border-bottom: 1px solid #E7E8E3;
-	padding: 10px;
-}
-
-section#empleo article h2{
-	color: #00b5cc;
+section h2{
 	font-weight: 400;
 }
 
-section#empleo article p{
+section article{
+	border-bottom: 1px solid #E7E8E3;
+	padding: 10px;
+	
+}
+
+section article h2{
+	color: #00b5cc;
+	padding-bottom: 10px;
+}
+
+section article p{
 	color: #3C3C3C;
+}
+
+section article form#inscripcion{
+	width: 80%;	
+	margin: 0 auto;
+}
+
+section article form#inscripcion h2 span{
+	font-size: 16px;
+}
+
+section article form#inscripcion input{
+	padding: 7px;
+	font-size: 1em;
+	width: 80%;
+	margin-bottom: 10px; 
+	border: 1px solid #C9CAC1;
+}
+
+section article form#inscripcion input[type="submit"]{
+	width: 50%;
+	margin: 0 auto;
 }
