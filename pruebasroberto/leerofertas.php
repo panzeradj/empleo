@@ -44,7 +44,7 @@
                         var result = Math.pow(Math.sin((lat2 - lat1) / 2) , 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin((lng2 - lng1) / 2) , 2);  
                         var distancia =(12722 * Math.asin(Math.sqrt(result))); 
 
-                        if(distancia<300)
+                        if(distancia<30)
                         {
                             misPuntos[contador] = [""+resultado[0],""+coordenadas[1], ""+coordenadas[0], "icon1", ""+resultado[0]];
                             //console.log( "distancia <10");

@@ -15,6 +15,9 @@
             setGoogleMarkers(map, misPuntos);
         }
         function setGoogleMarkers(map, locations) {
+            
+            var markers = Array();
+            var infowindowActivo = false;
             // Definimos los iconos a utilizar con sus medidas
             var icon1 = new google.maps.MarkerImage(
                 "office-building.png",

@@ -1,5 +1,5 @@
 <?php
-
+	///////////////Funcion para obtener todos los datos de la bbdd, devuelve un array con todos los datos
 	function leerArchivo ()
 	{
 		//funcion para obtener todos los datos de la bbdd en un array
@@ -64,7 +64,7 @@
 		echo "</tr>";
 	}
 	echo "</table>";*/
-	function abrirBBDD()
+	function abrirBBDD() // conecta con la bbdd
 	{
 		$conexion = new mysqli("127.0.0.1", "root", "root", "emlpleo");
 		if (mysqli_connect_errno()) 
@@ -73,7 +73,7 @@
 		}
 		return $conexion;
 	}
-	function  cerrarBBDD($conexion)
+	function  cerrarBBDD($conexion)//cierra la conexion con la bbdd
 	{
 		$conexion->close($conexion);
 	}
@@ -92,7 +92,7 @@
 		echo "</tr>";
 	}
 	echo "</table>";*/
-	function sacarCoordenadas($datos)
+	function sacarCoordenadas($datos)//introduciendo el array con todos los datos devolvemos el titulo del empleo y las coordenadas de su municipio
 	{
 		
 		$conexion = abrirBBDD();
