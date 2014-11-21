@@ -44,13 +44,12 @@
                         var result = Math.pow(Math.sin((lat2 - lat1) / 2) , 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin((lng2 - lng1) / 2) , 2);  
                         var distancia =(12722 * Math.asin(Math.sqrt(result))); 
 
-                        if(distancia<10)
+                        if(distancia<300)
                         {
                             misPuntos[contador] = [""+resultado[0],""+coordenadas[1], ""+coordenadas[0], "icon1", ""+resultado[0]];
-                           // console.log( "distancia <10");
+                            //console.log( "distancia <10");
                             contador++;
-                        } 
-                      
+                        }                     
 
                     }
                 }            
@@ -87,13 +86,18 @@
             
 
             for(var i=0; i<locations.length; i++) {
-              
+                    
                     var elPunto = locations[i];
-                    var myLatLng = new google.maps.LatLng(parseInt(elPunto[1])+(i*0.0000000000002), elPunto[2]);
-                
-                
+                    console.log( elPunto[1]);
+                    elPunto[1]=parseFloat(elPunto[1])+(i*0.0002);
+                    elPunto[1]=""+elPunto[1];
+                     elPunto[2]=parseFloat(elPunto[2])+(i*0.0002);
+                    elPunto[2]=""+elPunto[2];
 
-                markers[i]=new google.maps.Marker({
+                    console.log( elPunto[2]);
+                    var myLatLng = new google.maps.LatLng(elPunto[1], elPunto[2]);
+                
+                    markers[i]=new google.maps.Marker({
                     position: myLatLng,
                     map: map,
                     icon: eval(elPunto[3]),
