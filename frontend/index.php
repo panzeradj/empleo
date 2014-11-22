@@ -11,6 +11,7 @@
 		<header>				
 			<!-- Menu Superior --> 
 			<?php include('parts/header.php'); ?>
+			<?php include('php/functions.php'); ?>
 
 		<div id="map_canvas"></div>
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
@@ -138,7 +139,7 @@
 		<section id="empleo">
 			<div class="centrado">
 				<h1>Ofertas de Empleo</h1>
-				<article>
+				<!--<article>
 					<h2>Titulo empleo</h2>
 					<p>
 						Descripcion, Descripcion, Descripcion, Descripcion,
@@ -167,7 +168,23 @@
 					</p>
 					<a href="#">Enlace a la oficina de empleo</a>
 					<p class="fecha">November 11, 2014</p>
-				</article>	
+				</article>	-->
+				<?php
+					$datos=leerArchivo();
+					for($i=0;$i<3;$i++){
+						$numAleatorio=rand(0,250);
+					//	echo $numAleatorio;
+						echo "<article>";
+							echo "<h2>".$datos[$numAleatorio][0]."</h2>";
+							echo "<p>".$datos[$numAleatorio][4]."</p>";
+							echo "<a href='".$datos[$numAleatorio][11]."'>Enlace a la oficina de empleo</a>";
+						echo "</article>";
+					}
+					
+					
+					$datos[$numAleatorio][0];
+				?>
+				
 			</div>	
 			<div class="limpio"></div>
 		</section>

@@ -8,8 +8,7 @@ function leerArchivo ()
 			$f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");
 			$cuando=fgets($f);
 			$titulos=fgets($f);
-			$contador=0;
-		
+			$contador=0; 
 			while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
 					$datos[$contador][0]=$registro[0];
 					$datos[$contador][1]=$registro[1];
@@ -25,7 +24,7 @@ function leerArchivo ()
 					$datos[$contador][11]=$registro[11];
 	              $contador++;				
 			}
-			fclose($f1);
+			fclose($f);
 			return $datos;
 	}
 	function abrirBBDD() // conecta con la bbdd

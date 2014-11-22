@@ -41,7 +41,7 @@
 				         	echo "<article>";
 				           	echo "<h2>".$registro[0]." <span class=provincia> - ".$registro[2]."</span></h2>";				           	
 				           	echo "<p>".$registro[4]."</p>";
-				           	echo "<a href=".$registro[10]." class=enlaceOficina >Enlace oficina de empleo</a>";                   				
+				           	echo "<a href=".$registro[11]." class=enlaceOficina >Enlace oficina de empleo</a>";                   				
 				       		echo "</article>";
 				        }               
 				    }               
