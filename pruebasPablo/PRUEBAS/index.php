@@ -22,7 +22,7 @@
 		
 		<section id="buscador">
 			<article class="centrado">
-				<form action="oferts.php" method="POST">
+				<form action="busqueda.php" method="POST">
 					<input type="text" id="busqueda" name="busqueda" placeholder="Cocinero">
 					<input type="submit" value="buscar">
 					<div id="buscador_provincias">
@@ -60,36 +60,7 @@
 		<section id="empleo">
 			<div class="centrado">
 				<h1>Ofertas de Empleo</h1>
-				<article>
-					<h2>Titulo empleo</h2>
-					<p>
-						Descripcion, Descripcion, Descripcion, Descripcion,
-						Descripcion, Descripcion, Descripcion,
-						Descripcion, Descripcion, Descripcion, Descripcion
-					</p>
-					<a href="#">Enlace a la oficina de empleo</a>
-					<p class="fecha">November 11, 2014</p>
-				</article>		
-				<article>
-					<h2>Titulo empleo</h2>
-					<p>
-						Descripcion, Descripcion, Descripcion, Descripcion,
-						Descripcion, Descripcion, Descripcion,
-						Descripcion, Descripcion, Descripcion, Descripcion
-					</p>
-					<a href="#">Enlace a la oficina de empleo</a>
-					<p class="fecha">November 11, 2014</p>
-				</article>
-				<article>
-					<h2>Titulo empleo</h2>
-					<p>
-						Descripcion, Descripcion, Descripcion, Descripcion,
-						Descripcion, Descripcion, Descripcion,
-						Descripcion, Descripcion, Descripcion, Descripcion
-					</p>
-					<a href="#">Enlace a la oficina de empleo</a>
-					<p class="fecha">November 11, 2014</p>
-				</article>	
+			
 			</div>	
 			<div class="limpio"></div>
 		</section>

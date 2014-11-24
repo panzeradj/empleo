@@ -1,27 +1,3 @@
-<?php
-
-	if(isset($_POST['busqueda'])){
-		$busqueda = $_POST['busqueda'];
-
-		if(isset($_POST['provincia'])){
-			$provincias = $_POST['provincia'];
-			foreach($provincias as $indice=>$valor){
-				
-
-
-				
-			}
-		}else{
-			// Tengo que sacar todas
-		}
-
-		
-	}
-
-
-
-
-?>
 
 
 
@@ -49,7 +25,7 @@
 		<section id="empleo">
 			<div class="centrado">		
 				<h1>Ofertas de Empleo</h1>
-				<?php            
+				<?php  /*          
 				     // Aqui se encuentra el fichero
 				    $fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/empleo/ofertas-empleo/1284354353012.csv";
 				    $f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");             
@@ -72,7 +48,7 @@
 				       		echo "</article>";
 				        }               
 				    }               
-				    fclose($f);
+				    fclose($f);*/
 				?>
 
 			</div>	
