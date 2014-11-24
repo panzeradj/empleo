@@ -1,32 +1,39 @@
 <?php
-function leerArchivo ()
-	{
-		//funcion para obtener todos los datos de la bbdd en un array
-		 
-		
-			$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/empleo/ofertas-empleo/1284354353012.csv";
-			$f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");
-			$cuando=fgets($f);
-			$titulos=fgets($f);
-			$contador=0;
-		
-			while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
-					$datos[$contador][0]=$registro[0];
-					$datos[$contador][1]=$registro[1];
-					$datos[$contador][2]=$registro[2];
-					$datos[$contador][3]=$registro[3];
-					$datos[$contador][4]=$registro[4];
-					$datos[$contador][5]=$registro[5];
-					$datos[$contador][6]=$registro[6];
-					$datos[$contador][7]=$registro[7];
-					$datos[$contador][8]=$registro[8];
-					$datos[$contador][9]=$registro[9];
-					$datos[$contador][10]=$registro[10];
-					$datos[$contador][11]=$registro[11];
-	              $contador++;				
-			}
-			fclose($f);
-			return $datos;
+	function leerArchivo ()	{
+
+		$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/empleo/ofertas-empleo/1284354353012.csv";
+		$f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");
+		$cuando=fgets($f);	
+		$titulos=fgets($f);			
+		$contador=0;
+
+		while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
+
+				$tofind = utf8_decode("ÀÁÂÃÄÅàáâãäåÒÓÔÕÖòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ");
+				$replac = "AAAAAAaaaaaaOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNn";
+				$datos[$contador][0]=$registro[0];
+				$datos[$contador][1]=$registro[1];						
+				$datos[$contador][2]=strtr($registro[2],$tofind,$replac);
+				$datos[$contador][3]=$registro[3];
+				$datos[$contador][4]=$registro[4];
+				$datos[$contador][5]=$registro[5];
+				$datos[$contador][6]=$registro[6];
+				$datos[$contador][7]=$registro[7];
+				$datos[$contador][8]=$registro[8];
+				$datos[$contador][9]=$registro[9];
+				$datos[$contador][10]=$registro[10];
+				$datos[$contador][11]=$registro[11];
+              	$contador++;				
+		}			
+		fclose($f);
+
+		foreach ($datos as $key => $fila) {			
+        	$provincias[$key]  = $fila[2]; 
+  	  	}	 
+		//ordenamos ascendente por la columna elegida
+		array_multisort($provincias, SORT_ASC, $datos);
+		return $datos;
+
 	}
 
 
