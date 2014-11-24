@@ -2,6 +2,7 @@
 	///////////////Funcion para obtener todos los datos de la bbdd, devuelve un array con todos los datos
 	function leerArchivo ()
 	{
+		//echo "melo";
 		//funcion para obtener todos los datos de la bbdd en un array
 		 
 		// Aqui se encuentra el fichero
@@ -27,7 +28,9 @@
 
 					$datos[$contador][0]=$registro[0];
 					$datos[$contador][1]=$registro[1];
-					$datos[$contador][2]=$registro[2];
+					$tofind = utf8_decode("ÀÁÂÃÄÅàáâãäåÒÓÔÕÖòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ");
+					$replac = "AAAAAAaaaaaaOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNn";
+					$datos[$contador][2]=strtr($registro[2],$tofind,$replac);
 					$datos[$contador][3]=$registro[3];
 					$datos[$contador][4]=$registro[4];
 					$datos[$contador][5]=$registro[5];
@@ -41,13 +44,19 @@
 			}
 
 		// Cerrando el fichero
-			fclose($f1);
-			return $datos;
+			fclose($f);
+			foreach ($datos as $key => $fila) {			
+            	$provincias[$key]  = $fila[2]; // columna de provincias
+      	  	}
+ 
+		//ordenamos ascendente por la columna elegida
+		array_multisort($provincias, SORT_ASC, $datos);
+		return $datos;
 
 	}
 
 	
-	/*$datos=leerArchivo();
+	$datos=leerArchivo();
 	//echo $datos[200][0]; 
 
 	echo "<table border=1>";
@@ -63,7 +72,7 @@
 		}
 		echo "</tr>";
 	}
-	echo "</table>";*/
+	echo "</table>";
 	function abrirBBDD() // conecta con la bbdd
 	{
 		$conexion = new mysqli("127.0.0.1", "root", "root", "emlpleo");
