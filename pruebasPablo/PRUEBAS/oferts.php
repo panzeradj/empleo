@@ -1,3 +1,29 @@
+<?php
+
+	if(isset($_POST['busqueda'])){
+		$busqueda = $_POST['busqueda'];
+
+		if(isset($_POST['provincia'])){
+			$provincias = $_POST['provincia'];
+			foreach($provincias as $indice=>$valor){
+				
+
+
+				
+			}
+		}else{
+			// Tengo que sacar todas
+		}
+
+		
+	}
+
+
+
+
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -35,7 +61,8 @@
 				    foreach($campos as $indice=>$valor){                    
 				        $numcampos++;
 				    }               
-				    $direcciones = "";				    
+				    $direcciones = "";	
+
 				    while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
 				        if( $registro[7]!=""){                    
 				         	echo "<article>";

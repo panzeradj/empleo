@@ -36,13 +36,13 @@
 			/* Busco si la palabra $busqueda esta dentro del String $cadena */			
 			if(strpos($cadena,$valor)){					
 				/* Respuesta pura LIKE */
-				//return true;
+				return true;
 				/*Si encuentro la palabra la pongo en negrita, con expresion regular para encontrar 
 				la palabra completa y no solo unos caracteres */
-				$cadena =  preg_replace ("/\b" . preg_quote($valor) . "\b/i", "<b>" . $valor . "</b>", $cadena);
-				echo "<h2>".$cadena."</h2>";
+				//$cadena =  preg_replace ("/\b" . preg_quote($valor) . "\b/i", "<b>" . $valor . "</b>", $cadena);
+				//echo "<h2>".$cadena."</h2>";
 			}else{
-				//return false;
+				return false;
 			}
 		}			
 	}
