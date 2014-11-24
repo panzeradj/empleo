@@ -1,9 +1,7 @@
 <?php
 function leerArchivo ()
 	{
-		//funcion para obtener todos los datos de la bbdd en un array
-		 
-		
+		//funcion para obtener todos los datos de la bbdd en un array y ordenarla alfabeticamente(provincias)
 			$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/empleo/ofertas-empleo/1284354353012.csv";
 			$f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");
 			$cuando=fgets($f);
@@ -25,7 +23,11 @@ function leerArchivo ()
 	              $contador++;				
 			}
 			fclose($f);
-			return $datos;
+			foreach ($datos as $key => $fila) {			
+            	$provincias[$key]  = $fila[2]; 
+      	  	}
+			array_multisort($provincias, SORT_ASC, $datos);
+		return $datos;
 	}
 	function abrirBBDD() // conecta con la bbdd
 	{

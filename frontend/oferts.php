@@ -23,31 +23,24 @@
 		<section id="empleo">
 			<div class="centrado">		
 				<h1>Ofertas de Empleo</h1>
-				<?php            
-				     // Aqui se encuentra el fichero
-				    $fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/empleo/ofertas-empleo/1284354353012.csv";
-				    $f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");             
-				    $titulos=fgets($f);
-				    $titulos=fgets($f);
-				    $campos=explode(";",$titulos);
-				    
-				    $numcampos=0;
-				    foreach($campos as $indice=>$valor){                    
-				        $numcampos++;
-				    }               
-				    $direcciones = "";				    
-				    while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
-				        if( $registro[7]!=""){                    
-				         	echo "<article>";
-				           	echo "<h2>".$registro[0]." <span class=provincia> - ".$registro[2]."</span></h2>";				           	
-				           	echo "<p>".$registro[4]."</p>";
-				           	echo "<a href=".$registro[11]." class=enlaceOficina >Enlace oficina de empleo</a>";                   				
-				       		echo "</article>";
-				        }               
-				    }               
-				    fclose($f);
-				?>
+				<?php include('php/functions.php'); ?>
+				<?php   
+					$datos=leerArchivo();
+					$provi="";
+				    foreach($datos as $valor)
+				    {
 
+				    	echo "<article>";
+					    	if($valor[2]!=$provi){				    	
+					    		echo "<h1>$valor[2]</h1>";
+					    	}
+				           	echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
+				           	echo "<p>".$valor[4]."</p>";
+				           	echo "<a href=".$valor[10]." class=enlaceOficina >Enlace oficina de empleo</a>";                   				
+				       	echo "</article>";
+				       	$provi=$valor[2];
+				    }                            				             
+				?>
 			</div>	
 			<div class="limpio"></div>
 		</section>

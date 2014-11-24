@@ -67,7 +67,7 @@
 		for($a=0;$a<12;$a++)
 		{
 			echo "<td>";
-			echo $datos[$i][$a].";";
+			echo $datos[$i][$a];
 			echo "</td>";
 		}
 		echo "</tr>";

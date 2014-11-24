@@ -10,8 +10,9 @@
 	<body>
 		<header>				
 			<!-- Menu Superior --> 
-			<?php include('parts/header.php'); ?>
 			<?php include('php/functions.php'); ?>
+			<?php include('parts/header.php'); ?>
+			
 
 		<div id="map_canvas"></div>
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
