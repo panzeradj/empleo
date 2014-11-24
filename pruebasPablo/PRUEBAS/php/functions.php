@@ -25,9 +25,11 @@ function leerArchivo ()
 					$datos[$contador][11]=$registro[11];
 	              $contador++;				
 			}
-			fclose($f1);
+			fclose($f);
 			return $datos;
 	}
+
+
 	function abrirBBDD() // conecta con la bbdd
 	{
 		$conexion = new mysqli("127.0.0.1", "root", "root", "emlpleo");
@@ -37,10 +39,14 @@ function leerArchivo ()
 		}
 		return $conexion;
 	}
+
+
 	function  cerrarBBDD($conexion)//cierra la conexion con la bbdd
 	{
 		$conexion->close($conexion);
 	}
+
+
 	function sacarCoordenadas($datos)//introduciendo el array con todos los datos devolvemos el titulo del empleo y las coordenadas de su municipio
 	{
 		$conexion = abrirBBDD();
