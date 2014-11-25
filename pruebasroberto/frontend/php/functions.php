@@ -45,12 +45,28 @@
 			$datos[$contador][9]=$registro[9];
 			$datos[$contador][10]=$registro[10];
 			$datos[$contador][11]=$registro[11];
+
 		  $contador++;				
 		}		
 		fclose($f);
 		foreach ($datos as $key => $fila) $provincias[$key]  = $fila[2];
 		//ordenamos ascendente por la columna elegida
 		array_multisort($provincias, SORT_ASC, $datos);
+		$cont=0;
+		while($datos[$cont][0]!=null)
+		{
+			if(	$datos[$cont][2]=='Avila')
+			{
+					$datos[$cont][2]=">&Aacutevila";
+			}
+			if($datos[$cont][2]=='Leon')
+			{
+				$datos[$cont][2]=">Le&oacuten";
+			}
+			$cont++;
+		}
+
+		
 		return $datos;
 	}
 
@@ -93,7 +109,7 @@
 			if($valor[2]!=$provi)
 	    	{
 	    	
-	    		echo "<h1>$valor[2]</h1>";
+	    		echo "<h1>&Aacutevila</h1>";
 	    	}					
 				echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
 				echo "<p>".$valor[4]."</p>";
@@ -112,7 +128,7 @@
 					
 					if($valor[2]!=$provi)
 			    	{
-			       		echo "<h1>$valor[2]</h1>";
+			       		echo "<h1>àvila</h1>";
 			    	}					
 					echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
 					echo "<p>".$valor[4]."</p>";
@@ -131,12 +147,13 @@
 				echo "<article>";	
 				if($valor[2]!=$provi)
 	    	{
-	       		echo "<h1>$valor[2]</h1>";
+	       		echo "<h1>ávila</h1>";
 	    	}						
 				echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
 				echo "<p>".$valor[4]."</p>";
 				echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
 				echo "</article>";	
+				$provi=$valor[2];
 			}					
 		}		
 	}
@@ -150,12 +167,13 @@
 					echo "<article>";
 					if($valor[2]!=$provi)
 			    	{
-			    		echo "<h1>$valor[2]</h1>";
+			    		echo "<h1>ávila</h1>";
 			    	}							
 					echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
 					echo "<p>".$valor[4]."</p>";
 					echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
 					echo "</article>";	
+					$provi=$valor[2];
 					}	
 				}								
 			}

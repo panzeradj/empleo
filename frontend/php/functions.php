@@ -35,7 +35,7 @@
 		while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
 			$datos[$contador][0]=$registro[0];
 			$datos[$contador][1]=$registro[1];			
-			$datos[$contador][2]=strtoupper(strtr($registro[2],$tofind,$replac));
+			$datos[$contador][2]=strtr($registro[2],$tofind,$replac);
 			$datos[$contador][3]=$registro[3];
 			$datos[$contador][4]=$registro[4];
 			$datos[$contador][5]=$registro[5];
@@ -51,6 +51,19 @@
 		foreach ($datos as $key => $fila) $provincias[$key]  = $fila[2];
 		//ordenamos ascendente por la columna elegida
 		array_multisort($provincias, SORT_ASC, $datos);
+		$cont=0;
+		while($datos[$cont][0]!=null)
+		{
+			if(	$datos[$cont][2]=='Avila')
+			{
+					$datos[$cont][2]="&Aacutevila";
+			}
+			if($datos[$cont][2]=='Leon')
+			{
+				$datos[$cont][2]="Le&oacuten";
+			}
+			$cont++;
+		}
 		return $datos;
 	}
 
