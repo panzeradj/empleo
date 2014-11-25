@@ -10,8 +10,9 @@
 	<body>
 		<header>				
 			<!-- Menu Superior --> 
-			<?php include('parts/header.php'); ?>
 			<?php include('php/functions.php'); ?>
+			<?php include('parts/header.php'); ?>
+			
 
 		<div id="map_canvas"></div>
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
@@ -111,14 +112,9 @@
 
 		</header>
 		
-		<section id="buscador">
-			<article class="centrado">
-				<form>
-					<input type="text" id="cuadroCiudad" placeholder="Cocinero, Soria">
-					<input type="submit" value="buscar">
-				</form>
-			</article>
-		</section>
+		<!-- Buscador -->
+		<?php include('parts/searcher.php'); ?>
+		
 		<section id="welcome">
 			<div class="centrado">
 				<article>
@@ -139,36 +135,7 @@
 		<section id="empleo">
 			<div class="centrado">
 				<h1>Ofertas de Empleo</h1>
-				<!--<article>
-					<h2>Titulo empleo</h2>
-					<p>
-						Descripcion, Descripcion, Descripcion, Descripcion,
-						Descripcion, Descripcion, Descripcion,
-						Descripcion, Descripcion, Descripcion, Descripcion
-					</p>
-					<a href="#">Enlace a la oficina de empleo</a>
-					<p class="fecha">November 11, 2014</p>
-				</article>		
-				<article>
-					<h2>Titulo empleo</h2>
-					<p>
-						Descripcion, Descripcion, Descripcion, Descripcion,
-						Descripcion, Descripcion, Descripcion,
-						Descripcion, Descripcion, Descripcion, Descripcion
-					</p>
-					<a href="#">Enlace a la oficina de empleo</a>
-					<p class="fecha">November 11, 2014</p>
-				</article>
-				<article>
-					<h2>Titulo empleo</h2>
-					<p>
-						Descripcion, Descripcion, Descripcion, Descripcion,
-						Descripcion, Descripcion, Descripcion,
-						Descripcion, Descripcion, Descripcion, Descripcion
-					</p>
-					<a href="#">Enlace a la oficina de empleo</a>
-					<p class="fecha">November 11, 2014</p>
-				</article>	-->
+				
 				<?php
 					$datos=leerArchivo();
 					for($i=0;$i<3;$i++){

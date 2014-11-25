@@ -130,8 +130,18 @@ section#buscador form input{
 }
 
 section#buscador form input[type="text"]{
-	width: 400px;
+	width: 500px;
 	border: 1px solid #E2E3DF;
+}
+
+section#buscador #buscador_provincias{
+	margin-top: 20px;
+}
+
+section#buscador form input[type="checkbox"]{
+	margin: 5px;
+	width: 7px;
+	height: auto;	
 }
 
 section#buscador form input[type="submit"]{
@@ -204,6 +214,12 @@ section article h2{
 section article p{
 	color: #3C3C3C;
 }
+
+section article ul li{
+	margin-left: 25px;
+}
+
+
 
 section article form#inscripcion{
 	width: 80%;	

@@ -89,11 +89,17 @@
 	function todasLasOfertas(){			
 		$ofertas = leerArchivo();
 		foreach ($ofertas as $key => $valor) {			
-			echo "<article>";						
+			echo "<article>";	
+			if($valor[2]!=$provi)
+	    	{
+	    	
+	    		echo "<h1>$valor[2]</h1>";
+	    	}					
 				echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
 				echo "<p>".$valor[4]."</p>";
 				echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
-			echo "</article>";			
+			echo "</article>";
+				$provi=$valor[2];			
 		}	
 	}
 
@@ -102,11 +108,17 @@
 		foreach ($provincias as $clave => $provincia) {			
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){
-					echo "<article>";						
+					echo "<article>";	
+					
+					if($valor[2]!=$provi)
+			    	{
+			       		echo "<h1>$valor[2]</h1>";
+			    	}					
 					echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
 					echo "<p>".$valor[4]."</p>";
 					echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
 					echo "</article>";	
+						$provi=$valor[2];
 				}					
 			}
 		}
@@ -116,7 +128,11 @@
 		$datos = leerArchivo();				
 		foreach ($datos as $key => $valor) {
 			if(like($valor[0],$palabras)){
-				echo "<article>";						
+				echo "<article>";	
+				if($valor[2]!=$provi)
+	    	{
+	       		echo "<h1>$valor[2]</h1>";
+	    	}						
 				echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
 				echo "<p>".$valor[4]."</p>";
 				echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
@@ -131,7 +147,11 @@
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){
 					if(like($valor[0],$palabras)){
-					echo "<article>";						
+					echo "<article>";
+					if($valor[2]!=$provi)
+			    	{
+			    		echo "<h1>$valor[2]</h1>";
+			    	}							
 					echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
 					echo "<p>".$valor[4]."</p>";
 					echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
