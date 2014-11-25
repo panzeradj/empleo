@@ -35,7 +35,7 @@
 		while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
 			$datos[$contador][0]=$registro[0];
 			$datos[$contador][1]=$registro[1];			
-			$datos[$contador][2]=strtr($registro[2],$tofind,$replac);
+			$datos[$contador][2]=strtoupper(strtr($registro[2],$tofind,$replac));
 			$datos[$contador][3]=$registro[3];
 			$datos[$contador][4]=$registro[4];
 			$datos[$contador][5]=$registro[5];
