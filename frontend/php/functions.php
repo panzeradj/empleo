@@ -112,7 +112,7 @@
 	    	}					
 			echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
 			echo "<p>".$valor[4]."</p>";
-			echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
+			echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
 			echo "</article>";
 				$provi=$valor[2];			
 		}	
@@ -133,7 +133,7 @@
 			    	}					
 					echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
 					echo "<p>".$valor[4]."</p>";
-					echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
+					echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
 					echo "</article>";	
 						$provi=$valor[2];
 				}					
@@ -153,7 +153,7 @@
 			    }						
 				echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
 				echo "<p>".$valor[4]."</p>";
-				echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
+				echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
 				echo "</article>";
 				$provi=$valor[2];	
 			}					
@@ -174,7 +174,7 @@
 			    	}							
 					echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
 					echo "<p>".$valor[4]."</p>";
-					echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
+					echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
 					echo "</article>";	
 					}	
 				}								
