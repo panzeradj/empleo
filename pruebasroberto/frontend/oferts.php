@@ -1,10 +1,11 @@
 <?php
 		include('php/functions.php');	
 
-		if(isset($_POST['busqueda']) && isset($_POST['provincia'])){
+		//if(!empty($_POST['busqueda']) && !empty($_POST['provincia'])){
 			$busqueda = $_POST['busqueda'];
+			
 			$provincias = $_POST['provincia'];
-		}
+		//}
 		
 ?>
 
@@ -29,8 +30,9 @@
 			<div class="centrado">		
 				<h1>Ofertas de Empleo</h1>				
 				<?php 
+				echo $busqueda;
 
-				if($busqueda!="" || isset($provincias)){
+				//if($busqueda!="" || isset($provincias)){
 					if($busqueda == "" && count($provincias) == 0){
 						//echo "No hay palabras y no hay provincias";
 						todasLasOfertas();			
@@ -44,13 +46,13 @@
 						//echo "Hay palabras y SI hay provincia";
 						todasLasOfertasConPalabraYProvincia($busqueda,$provincias);
 					}else{
-						//echo "Para todo lo demas, muestro todo";
+						//echo "Para todo lo demas, muestro todo1";
 						todasLasOfertas();
-					}
+					}/*
 				}else{	
-					//echo "Para todo lo demas, muestro todo";				
+					echo "Para todo lo demas, muestro todo";				
 					todasLasOfertas();
-				}
+				}*/
 
 					
 
