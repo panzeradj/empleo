@@ -39,19 +39,19 @@
 				<h1>Ofertas de Empleo</h1>				
 				<?php 				
 					if($busqueda == "" && $provincias == null){
-						echo "No hay palabras y no hay provincias";
+						//echo "No hay palabras y no hay provincias";
 						todasLasOfertas();			
 					}else if($busqueda == "" && $provincias != null){
-						echo "No hay palabras pero SI hay provincias";
+						//echo "No hay palabras pero SI hay provincias";
 						todasLasOfertasDeProvincias($provincias);
 					}else if($busqueda != "" && $provincias == null){
-						echo "Hay palabras pero NO hay pronvicia";
+						//echo "Hay palabras pero NO hay pronvicia";
 						todasLasOfertasConPalabraSinProvincia($busqueda);
 					}else if($busqueda != "" && $provincias != null){
-						echo "Hay palabras y SI hay provincia";
+						//echo "Hay palabras y SI hay provincia";
 						todasLasOfertasConPalabraYProvincia($busqueda,$provincias);
 					}else{
-						echo "Para todo lo demas, muestro todo";
+						//echo "Para todo lo demas, muestro todo";
 						todasLasOfertas();
 					}					         				             
 				?>
