@@ -52,11 +52,12 @@
 		//ordenamos ascendente por la columna elegida
 		array_multisort($provincias, SORT_ASC, $datos);
 		$cont=0;
+		// AQUI ME DICE EL PUTO EL UNDEFINED OFFSET 
 		while($datos[$cont][0]!=null)
 		{
-			if(	$datos[$cont][2]=='Avila')
+			if($datos[$cont][2]=='Avila')
 			{
-					$datos[$cont][2]="&Aacutevila";
+				$datos[$cont][2]="&Aacutevila";
 			}
 			if($datos[$cont][2]=='Leon')
 			{
@@ -101,11 +102,12 @@
 
 	function todasLasOfertas(){			
 		$ofertas = leerArchivo();
+		$provi = "";
+		echo "TODAS LAS OFERTAS";
 		foreach ($ofertas as $key => $valor) {			
 			echo "<article>";	
 			if($valor[2]!=$provi)
-	    	{
-	    	
+	    	{	    	
 	    		echo "<h1>$valor[2]</h1>";
 	    	}					
 				echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
@@ -116,8 +118,10 @@
 		}	
 	}
 
+
 	function todasLasOfertasDeProvincias($provincias){
 		$datos = leerArchivo();
+		$provi = "";
 		foreach ($provincias as $clave => $provincia) {			
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){
@@ -138,7 +142,8 @@
 	}
 
 	function todasLasOfertasConPalabraSinProvincia($palabras){
-		$datos = leerArchivo();				
+		$datos = leerArchivo();	
+		$provi = "";			
 		foreach ($datos as $key => $valor) {
 			if(like($valor[0],$palabras)){
 				echo "<article>";	
@@ -156,6 +161,7 @@
 
 	function todasLasOfertasConPalabraYProvincia($palabras,$provincias){
 		$datos = leerArchivo();	
+		$provi = "";
 		foreach ($provincias as $clave => $provincia) {		
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){

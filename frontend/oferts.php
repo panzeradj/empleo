@@ -1,10 +1,19 @@
 <?php
 		include('php/functions.php');	
 
-		if(isset($_POST['busqueda']) && isset($_POST['provincia'])){
-			$busqueda = $_POST['busqueda'];
+		if(!empty($_POST['busqueda'])){
+			$busqueda = $_POST['busqueda'];	
+		}else{
+			$busqueda = "";
+		} 
+
+		if(!empty($_POST['provincia'])){
 			$provincias = $_POST['provincia'];
+		}else{
+			$provincias = null;
 		}
+			
+		
 		
 ?>
 
@@ -28,51 +37,23 @@
 		<section id="empleo">
 			<div class="centrado">		
 				<h1>Ofertas de Empleo</h1>				
-				<?php 
-
-				if($busqueda!="" || isset($provincias)){
-					if($busqueda == "" && count($provincias) == 0){
-						//echo "No hay palabras y no hay provincias";
+				<?php 				
+					if($busqueda == "" && $provincias == null){
+						echo "No hay palabras y no hay provincias";
 						todasLasOfertas();			
-					}else if($busqueda == "" && count($provincias) > 0){
-						//echo "No hay palabras pero SI hay provincias";
+					}else if($busqueda == "" && $provincias != null){
+						echo "No hay palabras pero SI hay provincias";
 						todasLasOfertasDeProvincias($provincias);
-					}else if($busqueda != "" && count($provincias) == 0){
-						//echo "Hay palabras pero NO hay pronvicia";
+					}else if($busqueda != "" && $provincias == null){
+						echo "Hay palabras pero NO hay pronvicia";
 						todasLasOfertasConPalabraSinProvincia($busqueda);
-					}else if($busqueda != "" && count($provincias) > 0){
-						//echo "Hay palabras y SI hay provincia";
+					}else if($busqueda != "" && $provincias != null){
+						echo "Hay palabras y SI hay provincia";
 						todasLasOfertasConPalabraYProvincia($busqueda,$provincias);
 					}else{
-						//echo "Para todo lo demas, muestro todo";
+						echo "Para todo lo demas, muestro todo";
 						todasLasOfertas();
-					}
-				}else{	
-					//echo "Para todo lo demas, muestro todo";				
-					todasLasOfertas();
-				}
-
-					
-
-
-
-
-
-					/*$datos=leerArchivo();
-					$provi="";
-				    foreach($datos as $valor)
-				    {
-
-				    	echo "<article>";
-					    	if($valor[2]!=$provi){				    	
-					    		echo "<h1>".$valor[2]."</h1>";
-					    	}
-				           	echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
-				           	echo "<p>".$valor[4]."</p>";
-				           	echo "<a href=".$valor[10]." class=enlaceOficina >Enlace oficina de empleo</a>";                   				
-				       	echo "</article>";
-				       	$provi=$valor[2];
-				    }                 */           				             
+					}					         				             
 				?>
 			</div>	
 			<div class="limpio"></div>
