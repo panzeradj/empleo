@@ -34,18 +34,17 @@
 
 		while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
 			$datos[$contador][0]=$registro[0];
-			$datos[$contador][1]=$registro[1];			
+			$datos[$contador][1]="";//$registro[1];			
 			$datos[$contador][2]=strtr($registro[2],$tofind,$replac);
 			$datos[$contador][3]=$registro[3];
 			$datos[$contador][4]=$registro[4];
 			$datos[$contador][5]=$registro[5];
-			$datos[$contador][6]=$registro[6];
-			$datos[$contador][7]=$registro[7];
+			$datos[$contador][6]="";//$registro[6];
+			$datos[$contador][7]="";//$registro[7];
 			$datos[$contador][8]=$registro[8];
 			$datos[$contador][9]=$registro[9];
-			$datos[$contador][10]=$registro[10];
+			$datos[$contador][10]="";//$registro[10];
 			$datos[$contador][11]=$registro[11];
-
 		  $contador++;				
 		}		
 		fclose($f);
@@ -53,11 +52,12 @@
 		//ordenamos ascendente por la columna elegida
 		array_multisort($provincias, SORT_ASC, $datos);
 		$cont=0;
-		while($datos[$cont][0]!=null)
+		// AQUI ME DICE EL PUTO EL UNDEFINED OFFSET 
+		while($cont<$contador)
 		{
-			if(	$datos[$cont][2]=='Avila')
+			if($datos[$cont][2]=='Avila')
 			{
-					$datos[$cont][2]="&Aacutevila";
+				$datos[$cont][2]="&Aacutevila";
 			}
 			if($datos[$cont][2]=='Leon')
 			{
@@ -65,8 +65,6 @@
 			}
 			$cont++;
 		}
-
-		
 		return $datos;
 	}
 
@@ -104,35 +102,36 @@
 
 	function todasLasOfertas(){			
 		$ofertas = leerArchivo();
+		$provi = "";
 		foreach ($ofertas as $key => $valor) {			
 			echo "<article>";	
 			if($valor[2]!=$provi)
-	    	{
-	    	
-	    		echo "<h1>&Aacutevila</h1>";
+	    	{	    	
+	    		echo "<h1 class=separador>".$valor[2]."</h1>";
 	    	}					
-				echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
-				echo "<p>".$valor[4]."</p>";
-				echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
+			echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
+			echo "<p>".$valor[4]."</p>";
+			echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
 			echo "</article>";
 				$provi=$valor[2];			
 		}	
 	}
 
+
 	function todasLasOfertasDeProvincias($provincias){
 		$datos = leerArchivo();
+		$provi = "";
 		foreach ($provincias as $clave => $provincia) {			
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){
-					echo "<article>";	
-					
+					echo "<article>";						
 					if($valor[2]!=$provi)
 			    	{
-			       		echo "<h1>àvila</h1>";
+			       		echo "<h1 class=separador>".$valor[2]."</h1>";;
 			    	}					
-					echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
+					echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
 					echo "<p>".$valor[4]."</p>";
-					echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
+					echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
 					echo "</article>";	
 						$provi=$valor[2];
 				}					
@@ -141,25 +140,27 @@
 	}
 
 	function todasLasOfertasConPalabraSinProvincia($palabras){
-		$datos = leerArchivo();				
+		$datos = leerArchivo();	
+		$provi = "";			
 		foreach ($datos as $key => $valor) {
 			if(like($valor[0],$palabras)){
 				echo "<article>";	
 				if($valor[2]!=$provi)
-	    	{
-	       		echo "<h1>ávila</h1>";
-	    	}						
-				echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
+			    {
+			    	echo "<h1 class=separador>".$valor[2]."</h1>";
+			    }						
+				echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
 				echo "<p>".$valor[4]."</p>";
-				echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
-				echo "</article>";	
-				$provi=$valor[2];
+				echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
+				echo "</article>";
+				$provi=$valor[2];	
 			}					
 		}		
 	}
 
 	function todasLasOfertasConPalabraYProvincia($palabras,$provincias){
 		$datos = leerArchivo();	
+		$provi = "";
 		foreach ($provincias as $clave => $provincia) {		
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){
@@ -167,18 +168,51 @@
 					echo "<article>";
 					if($valor[2]!=$provi)
 			    	{
-			    		echo "<h1>ávila</h1>";
+			    		echo "<h1 class=separador>".$valor[2]."</h1>";
 			    	}							
-					echo "<h2>".$valor[0]." <span class=provincia> - ".$valor[2]."</span></h2>";				           	
+					echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
 					echo "<p>".$valor[4]."</p>";
-					echo "<a href=".$valor[10]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
+					echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
 					echo "</article>";	
-					$provi=$valor[2];
+					$provi=$valor[2];	
 					}	
 				}								
 			}
 		}
 	}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////                          FUNCIONES SINGLE.PHP                              ////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+	function verOfertaUnica($id){
+		$datos = leerArchivo();				
+		foreach ($datos as $key => $valor) {
+			if($valor[9]==$id){					
+				echo "<article>";												
+				echo "<h2>$valor[0]</span></h2>";
+					$ano=substr($valor[3],0,4);
+					$mes=substr($valor[3],4,2);
+					$dia=substr($valor[3],6);
+				echo "<p>Fecha de la oferta: ".$dia."/".$mes."/".$ano."</p>";				           	
+				echo "<p>".$valor[4]."</p>";
+				echo "<p>".$valor[5]."</p>";
+				echo "<p>".$valor[8]."</p>";
+				//echo "<p>".$valor[9]."</p>";
+				echo "<a href=".$valor[11]." class=enlaceOficina  target='_blank' > Enlace oficina de empleo</a>";  
+				echo "<a href=# class='boton pdf' target='_blank'>Ver en PDF</a>";                 				
+				echo "</article>";							
+			}else{
+				//echo "<article>";												
+				//echo "<h2>Ups! Algo sali&oacute; mal</h2>";				                				
+				//echo "</article>";	
+			}								
+		}		
+	}
+
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

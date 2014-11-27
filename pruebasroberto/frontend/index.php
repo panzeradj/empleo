@@ -15,7 +15,7 @@
 			
 
 		<div id="map_canvas"></div>
-		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+		<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 		<?php
 			function obtenerDatos(){			
 				$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/directorio/oficinas-ecyl-reducido/1284315242383.csv";
@@ -40,7 +40,7 @@
 			}
 				obtenerDatos();	
 		?>
-
+		
 			<script type="text/javascript">		
 				var datos="<?php echo obtenerDatos();?>";
 				var misPuntos = new Array();
@@ -56,22 +56,22 @@
 						}
 					}					
 				}
-
+		
 				function inicializaGoogleMaps() {
 				    // Coordenadas del centro de nuestro recuadro principal
 				    var x =41.991;
 				    var y = -2.024532100000033;
-
+		
 				    var mapOptions = {
 				        zoom: 7,
 				        center: new google.maps.LatLng(x, y),
 				        mapTypeId: google.maps.MapTypeId.ROADMAP
 				    }
-
+		
 				    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 				    setGoogleMarkers(map, misPuntos);
 				}
-
+		
 				var markers = Array();
 				var infowindowActivo = false;
 				
@@ -80,11 +80,11 @@
 				        "office-building.png",
 				        new google.maps.Size(30, 30)
 				    );		    
-
+		
 				    for(var i=0; i<locations.length; i++) {
 				        var elPunto = locations[i];
 				        var myLatLng = new google.maps.LatLng(elPunto[1], elPunto[2]);
-
+		
 				        markers[i]=new google.maps.Marker({
 				            position: myLatLng,
 				            map: map,
@@ -103,9 +103,9 @@
 				        });
 				    }
 				}
-
+		
 				inicializaGoogleMaps();
-			</script>
+			</script> -->
 	
 			
 			<div class="limpio"></div>

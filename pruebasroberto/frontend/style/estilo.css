@@ -43,6 +43,15 @@
 	color: #535353;
 }
 
+.separador{
+	background: #00b5cc;
+	padding: 5px;
+	color: #fff;
+	text-indent: 20px;
+	margin-top: 40px;
+	margin-bottom: 25px;
+}
+
 .enlaceOficina:hover{
 	color: #00b5cc;
 }
@@ -198,6 +207,7 @@ section h1{
 
 section h2{
 	font-weight: 400;
+
 }
 
 section article{
@@ -209,6 +219,17 @@ section article{
 section article h2{
 	color: #00b5cc;
 	padding-bottom: 10px;
+}
+
+section article h2 a{
+	color: #00b5cc;
+	padding-bottom: 10px;
+	font-weight: 400;
+	text-decoration: none;
+}
+
+section article h2 a:hover{
+	text-decoration: underline;
 }
 
 section article p{
