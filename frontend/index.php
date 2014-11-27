@@ -1,16 +1,15 @@
-
+<!-- <?php include('php/functions.php'); ?> -->
 <!DOCTYPE html>
 <html lang="es">
 	<head>		
 		<title>Proyecto CyL</title>
-		<meta charset="LATIN-1">
+		<meta charset="utf-8">
 		<link rel="stylesheet" href="style/estilo.css">
-		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>	
+		<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>	 -->
 	</head>
 	<body>
 		<header>				
-			<!-- Menu Superior --> 
-			<?php include('php/functions.php'); ?>
+			<!-- Menu Superior --> 			
 			<?php include('parts/header.php'); ?>
 			
 
@@ -155,6 +154,7 @@
 			</div>	
 			<div class="limpio"></div>
 		</section>
-		<footer></footer>
+		<!-- FOOTER -->
+		<?php include('parts/footer.php'); ?>		
 	</body>
 </html>
