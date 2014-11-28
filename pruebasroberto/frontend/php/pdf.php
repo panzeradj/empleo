@@ -1,49 +1,46 @@
-﻿<?php
-	include('functions.php');
-	require('./fpdf17/fpdf.php');
-	$remplazos=array("&aacute;","&Aacute;","&eacute;","&Eacute;","&iacute;","&Iacute;","&oacute;","&Oacute;","&uacute;","&Uacute;");
-	$cambio=array("á","Á","é","É","í","Í","ó","Ó","ú","Ú");
+<?php
 
-	$contador=0;//usado para los acentos
-	$datos=leerArchivo();
-	$pdf = new FPDF();
-	foreach ($datos as $key => $valor) {
-			if($valor[9]==1284385182427){	
-				foreach($remplazos as $value )
-				{
-					$valor[0]=str_replace($value, $cambio[$contador],$valor[0]);		
-					$valor[2]=str_replace($value, $cambio[$contador],$valor[2]);				
-					$valor[7]=str_replace($value, $cambio[$contador],$valor[7]);
-					$valor[4]=str_replace($value, $cambio[$contador],$valor[4]);	
-					$contador++;					
-				}
-				$valor[2]=iconv("UTF-8","windows-1252",$valor[2]);
-				$valor[4]=iconv("UTF-8","windows-1252",$valor[4]);
-				$pdf = new FPDF();
-				$pdf->AddPage();
-				$pdf->SetFont('Arial','B',16);
-				$pdf->Image('./logotipo.jpg',10,10,40,40);
-				$pdf->SetXY(25, 50);
-					$ano=substr($valor[3],0,4);
-				$mes=substr($valor[3],4,2);
-				$dia=substr($valor[3],6);
-				$fecha="".$dia."/".$mes."/".$ano;
+// incluimos la libreria
 
-				$texto1=" Titulo: $valor[0] \n Provincia: $valor[2] \n Localidad: $valor[7] \n Fecha publicacion: $fecha";
-				$pdf->MultiCell(120,10,$texto1,0,"L");
-				$pdf->SetFont('Arial','B',8);
-				$pdf->SetXY(25, 100);
-				$texto1="$valor[4]";
-				$pdf->MultiCell(165,10,$texto1,1,"L");
-				$pdf->SetXY(25, 240);
-				$texto1="Enlace: $valor[11]";
-				$pdf->MultiCell(165,10,$texto1,0,"L");			
-			}else{
-					
-			}								
-		}	
-	
-	
+require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
 
-	$pdf->Output();
+include("functions.php");
+/*
+$id=1284384664482;
+$datos=leerArchivo();
+foreach ($datos as $key => $valor) {
+	if($valor[9]==$id){					
+		$titulo=$valor[0];
+			$ano=substr($valor[3],0,4);
+			$mes=substr($valor[3],4,2);
+
+			$dia=substr($valor[3],6);
+					           	
+		$descripcion=$valor[4];
+		$fuente=$valor[6];
+		$localidad=$valor[7];
+		$enlace=$valor[11];
+									
+	}else{
+			
+	}								
+}	*/
+// almacenamos el contenido HTML
+$sHTML = <<<PHP
+<h1></h1>
+<p>
+<img src='logotipo.jpg'/>
+<p>
+çasd
+</p>
+</p>
+PHP;
+
+//Creamos la instancia
+$PDF = new HTML2PDF('P','A4','fr');
+// autorizamos la impresion del HTML
+$PDF ->WriteHTML($sHTML);
+
+// devolvemos el PDF
+$PDF ->Output('html.pdf');
 ?>
