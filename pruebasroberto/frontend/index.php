@@ -1,4 +1,8 @@
 
+<?php 
+	include('php/functions.php'); 
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 	<head>		
@@ -10,7 +14,7 @@
 	<body>
 		<header>				
 			<!-- Menu Superior --> 
-			<?php include('php/functions.php'); ?>
+			
 			<?php include('parts/header.php'); ?>
 			
 
@@ -142,7 +146,7 @@
 						$numAleatorio=rand(0,250);
 					//	echo $numAleatorio;
 						echo "<article>";
-							echo "<h2>".$datos[$numAleatorio][0]."</h2>";
+							echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";
 							echo "<p>".$datos[$numAleatorio][4]."</p>";
 							echo "<a href='".$datos[$numAleatorio][11]."'>Enlace a la oficina de empleo</a>";
 						echo "</article>";

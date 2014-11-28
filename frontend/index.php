@@ -141,7 +141,7 @@
 						$numAleatorio=rand(0,250);
 					//	echo $numAleatorio;
 						echo "<article>";
-							echo "<h2>".$datos[$numAleatorio][0]."</h2>";
+							echo "<h2><a href='single.php?id=".$datos[$numAleatorio][9]."'>".$datos[$numAleatorio][0]."</a><span class=provincia> - ".$datos[$numAleatorio][7]."</span></h2>";
 							echo "<p>".$datos[$numAleatorio][4]."</p>";
 							echo "<a href='".$datos[$numAleatorio][11]."'>Enlace a la oficina de empleo</a>";
 						echo "</article>";

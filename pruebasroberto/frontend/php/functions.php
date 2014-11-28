@@ -40,7 +40,7 @@
 			$datos[$contador][4]=$registro[4];
 			$datos[$contador][5]=$registro[5];
 			$datos[$contador][6]="";//$registro[6];
-			$datos[$contador][7]="";//$registro[7];
+			$datos[$contador][7]=$registro[7];
 			$datos[$contador][8]=$registro[8];
 			$datos[$contador][9]=$registro[9];
 			$datos[$contador][10]="";//$registro[10];
@@ -52,17 +52,27 @@
 		//ordenamos ascendente por la columna elegida
 		array_multisort($provincias, SORT_ASC, $datos);
 		$cont=0;
-		// AQUI ME DICE EL PUTO EL UNDEFINED OFFSET 
+
+		
+		$cambio=array("&aacute;","&Aacute;","&eacute;","&Eacute;","&iacute;","&Iacute;","&oacute;","&Oacute;","&uacute;","&Uacute;");
+		$remplazos=array("á","Á","é","É","í","Í","ó","Ó","ú","Ú");
 		while($cont<$contador)
 		{
 			if($datos[$cont][2]=='Avila')
 			{
-				$datos[$cont][2]="&Aacutevila";
+				$datos[$cont][2]="&Aacute;vila";
 			}
 			if($datos[$cont][2]=='Leon')
 			{
-				$datos[$cont][2]="Le&oacuten";
+				$datos[$cont][2]="Le&oacute;n";
 			}
+			if($datos[$cont][7]=="")
+			{
+				$datos[$cont][7]=	$datos[$cont][2];
+			}
+			
+			
+			
 			$cont++;
 		}
 		return $datos;
@@ -198,7 +208,7 @@
 				echo "<p>".$valor[8]."</p>";
 				echo "<p>".$valor[9]."</p>";
 				echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";  
-				echo "<a href=# class='boton pdf'>Ver en PDF</a>";                 				
+				echo "<a href='php/pdf.php?id=".$valor[9]."' class='boton pdf'>Ver en PDF</a>";                 				
 				echo "</article>";							
 			}else{
 				//echo "<article>";												

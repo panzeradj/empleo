@@ -40,7 +40,7 @@
 			$datos[$contador][4]=$registro[4];
 			$datos[$contador][5]=$registro[5];
 			$datos[$contador][6]="";//$registro[6];
-			$datos[$contador][7]="";//$registro[7];
+			$datos[$contador][7]=$registro[7];
 			$datos[$contador][8]=$registro[8];
 			$datos[$contador][9]=$registro[9];
 			$datos[$contador][10]="";//$registro[10];
@@ -57,11 +57,15 @@
 		{
 			if($datos[$cont][2]=='Avila')
 			{
-				$datos[$cont][2]="&Aacutevila";
+				$datos[$cont][2]="&Aacute;vila";
 			}
 			if($datos[$cont][2]=='Leon')
 			{
-				$datos[$cont][2]="Le&oacuten";
+				$datos[$cont][2]="Le&oacute;n";
+			}
+			if($datos[$cont][7]=="")
+			{
+				$datos[$cont][7]=	$datos[$cont][2];
 			}
 			$cont++;
 		}
@@ -109,9 +113,9 @@
 	    	{	    	
 	    		echo "<h1 class=separador>".$valor[2]."</h1>";
 	    	}					
-			echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
+			echo "<h2><a href='single.php?id=".$valor[9]."' >".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
 			echo "<p>".$valor[4]."</p>";
-			echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
+			echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
 			echo "</article>";
 				$provi=$valor[2];			
 		}	
@@ -132,7 +136,7 @@
 			    	}					
 					echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
 					echo "<p>".$valor[4]."</p>";
-					echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
+					echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
 					echo "</article>";	
 						$provi=$valor[2];
 				}					
@@ -150,9 +154,9 @@
 			    {
 			    	echo "<h1 class=separador>".$valor[2]."</h1>";
 			    }						
-				echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
+				echo "<h2><a href='single.php?id=".$valor[9]."'  >".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
 				echo "<p>".$valor[4]."</p>";
-				echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
+				echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
 				echo "</article>";
 				$provi=$valor[2];	
 			}					
@@ -171,10 +175,11 @@
 			    	{
 			    		echo "<h1 class=separador>".$valor[2]."</h1>";
 			    	}							
-					echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
+					echo "<h2><a href='single.php?id=".$valor[9]."' target='_blank'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
 					echo "<p>".$valor[4]."</p>";
-					echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";                   				
+					echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
 					echo "</article>";	
+					$provi=$valor[2];
 					}	
 				}								
 			}
@@ -191,19 +196,20 @@
 		foreach ($datos as $key => $valor) {
 			if($valor[9]==$id){					
 				echo "<article>";												
-				echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";
-				echo "<p>".$valor[3]."</p>";				           	
+				echo "<h2>$valor[0]</h2>";
+				$ano=substr($valor[3], 0 ,4);
+				$mes=substr($valor[3], 4 ,2);
+				$dia=substr($valor[3], 6);
+
+				echo "<p> Fecha de la oferta: ".$ano."/".$mes."/".$dia."</p>";        	
 				echo "<p>".$valor[4]."</p>";
 				echo "<p>".$valor[5]."</p>";
 				echo "<p>".$valor[8]."</p>";
-				echo "<p>".$valor[9]."</p>";
-				echo "<a href=".$valor[11]." class=enlaceOficina> Enlace oficina de empleo</a>";  
-				echo "<a href=# class='boton pdf'>Ver en PDF</a>";                 				
-				echo "</article>";							
-			}else{
-				//echo "<article>";												
-				//echo "<h2>Ups! Algo sali&oacute; mal</h2>";				                				
-				//echo "</article>";	
+				//echo "<p>".$valor[9]."</p>";
+				echo "<a href=".$valor[11]." class=enlaceOficina target='_blank' > Enlace oficina de empleo</a>";  
+				echo "<a href='php/pdf.php?id=".$valor[9]."' class='boton pdf' target='_blank'>Ver en PDF</a>";                   				
+				echo "</article>";				
+
 			}								
 		}		
 	}
