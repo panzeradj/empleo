@@ -35,12 +35,44 @@ foreach ($datos as $key => $valor) {
 // almacenamos el contenido HTML
 $sHTML = <<<PHP
 <h1></h1>
-<img src="logo.png">
-<p>
-Titulo: $titulo<br>
-Provincia: $provincia <br>
-Localidad: $localidad <br>
-Fecha de la oferta: $dia/$mes/$ano<br>
+<img src="logo.png" style:"height: 100px;">
+<p >
+<table >
+	<tr>
+		<td>
+			Titulo:
+		</td>
+		<td>
+			$titulo
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Provincia:
+		</td>
+		<td>
+			$provincia
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Localidad:
+		</td>
+		<td>
+			$localidad
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Fecha de la oferta:
+		</td>
+		<td>
+			$dia/$mes/$ano
+		</td>
+	</tr>
+
+</table>
+
 $descripcion<br><br><br>
 
 <a href="$enlace" target='_blank'> $enlace</a>

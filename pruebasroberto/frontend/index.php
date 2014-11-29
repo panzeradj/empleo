@@ -1,25 +1,20 @@
-
-<?php 
-	include('php/functions.php'); 
-?>
-
+<!-- <?php include('php/functions.php'); ?> -->
 <!DOCTYPE html>
 <html lang="es">
 	<head>		
 		<title>Proyecto CyL</title>
-		<meta charset="LATIN-1">
+		<meta charset="utf-8">
 		<link rel="stylesheet" href="style/estilo.css">
-		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>	
+		<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>	 -->
 	</head>
 	<body>
 		<header>				
-			<!-- Menu Superior --> 
-			
+			<!-- Menu Superior --> 			
 			<?php include('parts/header.php'); ?>
 			
 
 		<div id="map_canvas"></div>
-		<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+		 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 		<?php
 			function obtenerDatos(){			
 				$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/directorio/oficinas-ecyl-reducido/1284315242383.csv";
@@ -56,7 +51,7 @@
 						console.log("1: "+resultado[1] );
 						var coordenadas = resultado[1].split("#");
 						if(coordenadas[0]!=undefined && coordenadas[1]!=undefined ){
-							misPuntos[a] = [""+resultado[0],""+coordenadas[0], ""+coordenadas[1], "icon1", ""+resultado[0]];							
+							misPuntos[a] = [""+resultado[0],""+coordenadas[0], ""+coordenadas[1], "icon1", ""+resultado[0]+"<a href='https://www.google.es/maps/@41.7648922,-2.466993,3a,90y,85.07h,87.94t/data=!3m4!1e1!3m2!1sLvvWfqJ98daCOQjJf-Ua-w!2e0'><img  hidth=100 width=100 src='soria.png'></a>"];							
 						}
 					}					
 				}
@@ -109,7 +104,7 @@
 				}
 		
 				inicializaGoogleMaps();
-			</script> -->
+			</script> 
 	
 			
 			<div class="limpio"></div>
@@ -146,7 +141,7 @@
 						$numAleatorio=rand(0,250);
 					//	echo $numAleatorio;
 						echo "<article>";
-							echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";
+							echo "<h2><a href='single.php?id=".$datos[$numAleatorio][9]."'>".$datos[$numAleatorio][0]."</a><span class=provincia> - ".$datos[$numAleatorio][7]."</span></h2>";
 							echo "<p>".$datos[$numAleatorio][4]."</p>";
 							echo "<a href='".$datos[$numAleatorio][11]."'>Enlace a la oficina de empleo</a>";
 						echo "</article>";
@@ -159,6 +154,7 @@
 			</div>	
 			<div class="limpio"></div>
 		</section>
-		<footer></footer>
+		<!-- FOOTER -->
+		<?php include('parts/footer.php'); ?>		
 	</body>
 </html>

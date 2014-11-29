@@ -5,8 +5,9 @@
 	margin: 0px;
 	padding: 0px;
 	font-family: 'Open Sans', sans-serif;	
-	color: #3C3C3C;
 }
+
+
 
 .limpio{
 	clear: both;
@@ -15,6 +16,7 @@
 .centrado{
 	width: 960px;
 	margin: 0 auto;	
+	overflow: hidden;
 }
 
 .letraGrande{
@@ -56,9 +58,9 @@
 	color: #00b5cc;
 }
 
-
 body{
 	background: #444444;
+	color: #3C3C3C;
 }
 
 header{	
@@ -116,7 +118,6 @@ nav ul li a{
 nav ul li a:hover{
 	color: #E07805;
 }
-
 
 section{
 	width: 100%;
@@ -179,6 +180,7 @@ section#welcome article{
 	width: 470px;
 	padding-top: 100px;
 	text-align: center;	
+	border: none;
 }
 
 section#welcome article h2{
@@ -199,6 +201,10 @@ section#welcome article h1{
 	margin: -10px
 }
 
+section#empleo{
+	padding-bottom: 35px;
+}
+
 section h1{
 	padding: 10px 0px;
 	font-weight: 400;
@@ -207,13 +213,11 @@ section h1{
 
 section h2{
 	font-weight: 400;
-
 }
 
 section article{
 	border-bottom: 1px solid #E7E8E3;
-	padding: 10px;
-	
+	padding: 10px;	
 }
 
 section article h2{
@@ -240,8 +244,6 @@ section article ul li{
 	margin-left: 25px;
 }
 
-
-
 section article form#inscripcion{
 	width: 80%;	
 	margin: 0 auto;
@@ -262,4 +264,48 @@ section article form#inscripcion input{
 section article form#inscripcion input[type="submit"]{
 	width: 50%;
 	margin: 0 auto;
+}
+
+footer{
+	background:  #EAEAEA;	
+	width: 100%;		
+	color: #444;
+}
+
+footer h2{
+	font-weight: 400;
+	font-size: 2em;
+	margin-bottom: 10px;
+}
+
+footer #enlaces{
+	float: left;
+	padding: 20px;	
+}
+
+footer ul li{
+	list-style: none;
+	padding: 4px;
+}
+
+footer ul li a{
+	color: #444;
+	font-weight: bolder;
+	text-decoration: none;
+}
+
+footer ul li a:hover{
+	color: #00b5cc;	
+}
+
+footer #copy{
+	width: 100%;
+	background: #00b5cc;
+}
+
+footer #copy p{
+	padding: 10px;
+	font-size: 10px;
+	color: #fff;
+	text-align: center;
 }
