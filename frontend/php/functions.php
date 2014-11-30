@@ -4,8 +4,8 @@
 /////////                           FUNCIONES BBDD                                   ////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
-	function abrirBBDD(){
-		$conexion = new mysqli("127.0.0.1", "root", "root", "emlpleo");
+	function conexion(){
+		$conexion = new mysqli("127.0.0.1", "root", "", "empleo");
 		if (mysqli_connect_errno()) 
 		{
 	    	die("Error grave: " . mysqli_connect_error());
@@ -13,9 +13,7 @@
 		return $conexion;
 	}
 
-	function  cerrarBBDD($conexion){
-		$conexion->close($conexion);
-	}
+	
 	
 	
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -215,6 +213,22 @@
 	}
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////                    FUNCIONES PARA SUBSCRIBE & ENLIST                       ////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+	function enlist($nombre,$email,$palabras,$provincias){
+		$conexion = conexion();
+		$sql = "INSERT INTO enlist(estado,frecuencia,nombre,email,palabras,provincias) VALUES(1,0,'".$nombre."','".$email."','".$palabras."','".$provincias."')";
+		if($conexion->query($sql)){
+			$conexion->close();
+			return true;
+		}else{
+			$conexion->close();
+			return false;
+		}		
+	}
 
 
 
