@@ -1,4 +1,4 @@
-<!-- <?php include('php/functions.php'); ?> -->
+ <?php include('php/functions.php'); ?> 
 <!DOCTYPE html>
 <html lang="es">
 	<head>		
@@ -14,27 +14,20 @@
 			
 
 		<div id="map_canvas"></div>
-		<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 		<?php
 			function obtenerDatos(){			
-				$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/directorio/oficinas-ecyl-reducido/1284315242383.csv";
-				$f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");				
-				$titulos=fgets($f);
-				$titulos=fgets($f);
-				$campos=explode(";",$titulos);
-				
-				$numcampos=0;
-				foreach($campos as $indice=>$valor){					
-					$numcampos++;
-				}				
-				$direcciones = "";			
-				while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
-					if( $registro[7]!=""){					
-						$direcciones= $direcciones.$registro[0]."?".$registro[7].";"; 					
+				$conexion=abrirBBDD();			
+				$direcciones="";	
+				$ordensql="select nombre , posicion from oficinas";
+				if($chorizo=$conexion->query($ordensql))
+				{			
+
+					while ($registro = $chorizo->fetch_array()) {	
+						$direcciones= $direcciones.$registro[0]."?".$registro[1].";"; 					
 					}				
-				}				
-				fclose($f);
-				//echo $direcciones;
+				}			
+				cerrarBBDD($conexion);
 				return $direcciones;
 			}
 				obtenerDatos();	
@@ -104,7 +97,7 @@
 				}
 		
 				inicializaGoogleMaps();
-			</script> -->
+			</script> 
 	
 			
 			<div class="limpio"></div>

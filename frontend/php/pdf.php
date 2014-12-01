@@ -31,6 +31,15 @@ foreach ($datos as $key => $valor) {
 		$provincia=$valor[2];									
 	}								
 }
+if($provincia=="&Aacutevila")
+{
+	$provincia= "&Aacute;vila";
+}
+if($provincia=="Le&oacuten")
+{
+	$provincia="Le&oacute;n";
+}
+
 
 // almacenamos el contenido HTML
 $sHTML = <<<PHP

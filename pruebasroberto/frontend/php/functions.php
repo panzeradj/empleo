@@ -57,11 +57,11 @@
 		{
 			if($datos[$cont][2]=='Avila')
 			{
-				$datos[$cont][2]="&Aacute;vila";
+				$datos[$cont][2]="&Aacutevila";
 			}
 			if($datos[$cont][2]=='Leon')
 			{
-				$datos[$cont][2]="Le&oacute;n";
+				$datos[$cont][2]="Le&oacuten";
 			}
 			if($datos[$cont][7]=="")
 			{
