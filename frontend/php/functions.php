@@ -14,7 +14,7 @@
 	}
 
 	
-		function abrirBBDD(){
+	function abrirBBDD(){
 		$conexion = new mysqli("127.0.0.1", "root", "root", "emlpleo");
 		if (mysqli_connect_errno()) 
 		{
@@ -240,6 +240,37 @@
 			$conexion->close();
 			return false;
 		}		
+	}
+
+	function mandarEmail(){
+		$conexion = conexion();
+		$sql = "SELECT * FROM enlist";
+		if($resultado = $conexion->query($sql)){
+			while($row = $resultado->fetch_array()){
+
+				// METER EL BUSCADOR
+				if($busqueda == "all" && $provincias == "all"){
+					//echo "No hay palabras y no hay provincias";
+					todasLasOfertas();			
+				}else if($busqueda == "all" && $provincias != "all"){
+					//echo "No hay palabras pero SI hay provincias";
+					todasLasOfertasDeProvincias($provincias);
+				}else if($busqueda != "all" && $provincias == "all"){
+					//echo "Hay palabras pero NO hay pronvicia";
+					todasLasOfertasConPalabraSinProvincia($busqueda);
+				}else if($busqueda != "all" && $provincias != "all"){
+					//echo "Hay palabras y SI hay provincia";
+					todasLasOfertasConPalabraYProvincia($busqueda,$provincias);
+				}else{
+					//echo "Para todo lo demas, muestro todo";
+					todasLasOfertas();
+				}
+
+			}
+		}else{
+			echo "error al sacar select";
+		}
+
 	}
 
 

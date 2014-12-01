@@ -45,7 +45,7 @@
   $mail->Timeout=30;
 
   //Indicamos cual es la dirección de destino del correo
-  $mail->AddAddress("peibol@elhacker.net");
+  $mail->AddAddress("o0kiii@hotmail.com");
 
   //Asignamos asunto y cuerpo del mensaje
   //El cuerpo del mensaje lo ponemos en formato html, haciendo 
