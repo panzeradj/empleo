@@ -25,6 +25,7 @@
 
 .boton{
 	border: none;
+	margin-top: 10px;
 	background: #9e4f8a;
 	color: #fff;
 	cursor: pointer;
@@ -265,6 +266,21 @@ section article form#inscripcion input[type="submit"]{
 	width: 50%;
 	margin: 0 auto;
 }
+
+
+ /* SUBSCIPCION */
+
+.provincia_subs{	
+	padding: auto;
+	display: inline-block;
+	text-align: center;
+}
+
+
+
+
+
+
 
 footer{
 	background:  #EAEAEA;	

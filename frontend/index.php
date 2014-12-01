@@ -131,7 +131,7 @@
 				<?php
 					$datos=leerArchivo();
 					for($i=0;$i<3;$i++){
-						$numAleatorio=rand(0,250);
+						$numAleatorio=rand(0,count($datos));
 					//	echo $numAleatorio;
 						echo "<article>";
 							echo "<h2><a href='single.php?id=".$datos[$numAleatorio][9]."'>".$datos[$numAleatorio][0]."</a><span class=provincia> - ".$datos[$numAleatorio][7]."</span></h2>";

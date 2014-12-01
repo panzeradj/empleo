@@ -1,9 +1,9 @@
-<!-- <?php include('php/functions.php'); ?> -->
+ <?php include('php/functions.php'); ?> 
 <!DOCTYPE html>
 <html lang="es">
 	<head>		
 		<title>Proyecto CyL</title>
-		<meta charset="utf-8">
+		
 		<link rel="stylesheet" href="style/estilo.css">
 		<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>	 -->
 	</head>
@@ -14,27 +14,25 @@
 			
 
 		<div id="map_canvas"></div>
-		 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 		<?php
 			function obtenerDatos(){			
-				$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/directorio/oficinas-ecyl-reducido/1284315242383.csv";
-				$f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");				
-				$titulos=fgets($f);
-				$titulos=fgets($f);
-				$campos=explode(";",$titulos);
-				
-				$numcampos=0;
-				foreach($campos as $indice=>$valor){					
-					$numcampos++;
-				}				
-				$direcciones = "";			
-				while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
-					if( $registro[7]!=""){					
-						$direcciones= $direcciones.$registro[0]."?".$registro[7].";"; 					
+				$conexion=abrirBBDD();			
+				$direcciones="";	
+				$ordensql="select nombre , posicion, localidad, calle, telefono, email , enlace from oficinas";
+				if($chorizo=$conexion->query($ordensql))
+				{			
+					while ($registro = $chorizo->fetch_array()) {	
+						if ($registro[3]!="")
+						{
+							$htm="$registro[0] <p> Localidad: $registro[2] <p>Calle: ".utf8_decode($registro[3])." <p> Telefono: $registro[4] <p>Email: $registro[5] <p>";
+							
+						}
+						
+						$direcciones= $direcciones.$registro[0]."?".$registro[1]."?".$htm.";"; 					
 					}				
-				}				
-				fclose($f);
-				//echo $direcciones;
+				}			
+				cerrarBBDD($conexion);
 				return $direcciones;
 			}
 				obtenerDatos();	
@@ -51,7 +49,7 @@
 						console.log("1: "+resultado[1] );
 						var coordenadas = resultado[1].split("#");
 						if(coordenadas[0]!=undefined && coordenadas[1]!=undefined ){
-							misPuntos[a] = [""+resultado[0],""+coordenadas[0], ""+coordenadas[1], "icon1", ""+resultado[0]+"<a href='https://www.google.es/maps/@41.7648922,-2.466993,3a,90y,85.07h,87.94t/data=!3m4!1e1!3m2!1sLvvWfqJ98daCOQjJf-Ua-w!2e0'><img  hidth=100 width=100 src='soria.png'></a>"];							
+							misPuntos[a] = [""+resultado[0],""+coordenadas[0], ""+coordenadas[1], "icon1", ""+resultado[2]];							
 						}
 					}					
 				}
@@ -138,7 +136,7 @@
 				<?php
 					$datos=leerArchivo();
 					for($i=0;$i<3;$i++){
-						$numAleatorio=rand(0,250);
+						$numAleatorio=rand(0,count($datos));
 					//	echo $numAleatorio;
 						echo "<article>";
 							echo "<h2><a href='single.php?id=".$datos[$numAleatorio][9]."'>".$datos[$numAleatorio][0]."</a><span class=provincia> - ".$datos[$numAleatorio][7]."</span></h2>";
