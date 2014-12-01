@@ -1,4 +1,7 @@
 <?php
+	// MAILER 
+	require_once('PHPMailer-master/class.phpmailer.php');
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////                           FUNCIONES BBDD                                   ////////
@@ -242,37 +245,166 @@
 		}		
 	}
 
-	function mandarEmail(){
+	function generarEmail(){
 		$conexion = conexion();
-		$sql = "SELECT * FROM enlist";
+		$sql = "SELECT * FROM enlist WHERE estado = 1";
 		if($resultado = $conexion->query($sql)){
 			while($row = $resultado->fetch_array()){
 
 				// METER EL BUSCADOR
 				if($busqueda == "all" && $provincias == "all"){
 					//echo "No hay palabras y no hay provincias";
-					todasLasOfertas();			
+					mailertodasLasOfertas();			
 				}else if($busqueda == "all" && $provincias != "all"){
 					//echo "No hay palabras pero SI hay provincias";
-					todasLasOfertasDeProvincias($provincias);
+					mailertodasLasOfertasDeProvincias($provincias);
 				}else if($busqueda != "all" && $provincias == "all"){
 					//echo "Hay palabras pero NO hay pronvicia";
-					todasLasOfertasConPalabraSinProvincia($busqueda);
+					mailertodasLasOfertasConPalabraSinProvincia($busqueda);
 				}else if($busqueda != "all" && $provincias != "all"){
 					//echo "Hay palabras y SI hay provincia";
-					todasLasOfertasConPalabraYProvincia($busqueda,$provincias);
+					mailertodasLasOfertasConPalabraYProvincia($busqueda,$provincias);
 				}else{
 					//echo "Para todo lo demas, muestro todo";
-					todasLasOfertas();
+					mailertodasLasOfertas();
 				}
 
 			}
 		}else{
 			echo "error al sacar select";
 		}
-
 	}
 
+		function mailertodasLasOfertas(){			
+			$ofertas = leerArchivo();
+			$provi = "";
+			$cadena = "";
+			foreach ($ofertas as $key => $valor) {			
+				$cadena += "<article>";	
+				if($valor[2]!=$provi)
+		    	{	    	
+		    		$cadena += "<h1 class=separador>".$valor[2]."</h1>";
+		    	}					
+				$cadena += "<h2><a href='single.php?id=".$valor[9]."' >".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
+				$cadena += "<p>".$valor[4]."</p>";
+				$cadena += "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
+				$cadena += "</article>";
+				$provi=$valor[2];			
+			}
+			return $cadena;	
+		}
+
+
+		function mailertodasLasOfertasDeProvincias($provincias){
+			$datos = leerArchivo();
+			$provi = "";
+			$cadena = "";
+			foreach ($provincias as $clave => $provincia) {			
+				foreach ($datos as $key => $valor) {
+					if($valor[2]==$provincia){
+						$cadena += "<article>";	
+						
+						if($valor[2]!=$provi)
+				    	{
+				       		$cadena += "<h1 class=separador>".$valor[2]."</h1>";;
+				    	}					
+						$cadena += "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
+						$cadena += "<p>".$valor[4]."</p>";
+						$cadena += "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
+						$cadena += "</article>";	
+							$provi=$valor[2];
+					}					
+				}
+			}
+			return $cadena;	
+		}
+
+		function mailertodasLasOfertasConPalabraSinProvincia($palabras){
+			$datos = leerArchivo();	
+			$provi = "";
+			$cadena = "";			
+			foreach ($datos as $key => $valor) {
+				if(like($valor[0],$palabras)){
+					$cadena += "<article>";	
+					if($valor[2]!=$provi)
+				    {
+				    	$cadena += "<h1 class=separador>".$valor[2]."</h1>";
+				    }						
+					$cadena += "<h2><a href='single.php?id=".$valor[9]."'  >".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
+					$cadena += "<p>".$valor[4]."</p>";
+					$cadena += "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
+					$cadena += "</article>";
+					$provi=$valor[2];	
+				}					
+			}
+			return $cadena;			
+		}
+
+		function mailertodasLasOfertasConPalabraYProvincia($palabras,$provincias){
+			$datos = leerArchivo();	
+			$provi = "";
+			$cadena = "";
+			foreach ($provincias as $clave => $provincia) {		
+				foreach ($datos as $key => $valor) {
+					if($valor[2]==$provincia){
+						if(like($valor[0],$palabras)){
+						$cadena += "<article>";
+						if($valor[2]!=$provi)
+				    	{
+				    		$cadena += "<h1 class=separador>".$valor[2]."</h1>";
+				    	}							
+						$cadena += "<h2><a href='single.php?id=".$valor[9]."' target='_blank'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
+						$cadena += "<p>".$valor[4]."</p>";
+						$cadena += "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
+						$cadena += "</article>";	
+						$provi=$valor[2];
+						}	
+					}								
+				}
+			}
+			return $cadena;	
+		}
+
+
+	/**
+	 * [enviarEmail description]
+	 * Funcion encargada de enviar el email al cliente con las alertas de empleo
+	 * @param  [type] $email  [description]	
+	 * @param  [type] $cadena [description]
+	 * @return [type]         [description]
+	 */
+	function enviarEmail($email,$cadena){    
+	    $mail = new phpmailer();
+		$mail->IsSMTP();    
+		$mail->Mailer = "smtp";    
+		$mail->Host = "smtp.googlemail.com";
+		$mail->SMTPAuth = true;
+		$mail->SMTPSecure = "ssl";
+		$mail->Port = 465;
+		$mail->Username = "bytelchuscom@gmail.com"; 
+		$mail->Password = ""; // Contraseña
+		$mail->From = "bytelchuscom@gmail.com";
+		$mail->FromName = "Bytelchus Network";
+		$mail->Timeout=30;
+		$mail->AddAddress($email); // email destinatario
+		$mail->Subject = "Prueba de phpmailer";
+		$mail->Body = $cadena; // contenido del email
+		$mail->AltBody =  $cadena; // contenido del email alternativo
+		$exito = $mail->Send();
+		$intentos=1; 
+		while ((!$exito) && ($intentos < 5)) {
+			sleep(5);
+			$exito = $mail->Send();
+			$intentos=$intentos+1;  
+		}    
+
+		if(!$exito){
+			echo "Problemas enviando correo electrónico a ";
+			echo "<br/>".$mail->ErrorInfo;  
+		}else{
+			echo "Mensaje enviado correctamente";
+		} 
+	  }//Fin funcion mandarEmail
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
