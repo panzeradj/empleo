@@ -65,7 +65,7 @@
 			}
 			if($datos[$cont][7]=="")
 			{
-				$datos[$cont][7]=	$datos[$cont][2];
+				$datos[$cont][7]=$datos[$cont][2];
 			}
 			$cont++;
 		}

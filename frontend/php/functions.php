@@ -14,6 +14,18 @@
 	}
 
 	
+		function abrirBBDD(){
+		$conexion = new mysqli("127.0.0.1", "root", "root", "emlpleo");
+		if (mysqli_connect_errno()) 
+		{
+	    	die("Error grave: " . mysqli_connect_error());
+		}
+		return $conexion;
+	}
+
+	function  cerrarBBDD($conexion){
+		$conexion->close($conexion);
+	}
 	
 	
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -55,11 +67,11 @@
 		{
 			if($datos[$cont][2]=='Avila')
 			{
-				$datos[$cont][2]="&Aacute;vila";
+				$datos[$cont][2]="&Aacutevila";
 			}
 			if($datos[$cont][2]=='Leon')
 			{
-				$datos[$cont][2]="Le&oacute;n";
+				$datos[$cont][2]="Le&oacuten";
 			}
 			if($datos[$cont][7]=="")
 			{
