@@ -6,7 +6,8 @@
 		}else{
 			$id=0;
 		} */
-		$id= array(1284385747621 , 1284386282823);
+		//$id= array(1284385747621 , 1284386282823);
+		$id=$_POST['id'];
 	
 	require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
 

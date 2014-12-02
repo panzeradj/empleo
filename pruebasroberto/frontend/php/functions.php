@@ -117,7 +117,10 @@
 	function todasLasOfertas(){			
 		$ofertas = leerArchivo();
 		$provi = "";
-		foreach ($ofertas as $key => $valor) {			
+		$id= array();//donde se guardan los id para sacar en pdf
+		$cont=0;//contador para meter los id a la variable
+		foreach ($ofertas as $key => $valor) {	
+			$id[$cont]=$valor[9];
 			echo "<article>";	
 			if($valor[2]!=$provi)
 	    	{	    	
@@ -127,7 +130,7 @@
 			echo "<p>".$valor[4]."</p>";
 			echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
 			echo "</article>";
-				$provi=$valor[2];			
+			$provi=$valor[2];			
 		}	
 	}
 
@@ -135,9 +138,12 @@
 	function todasLasOfertasDeProvincias($provincias){
 		$datos = leerArchivo();
 		$provi = "";
+		$id= array();//donde se guardan los id para sacar en pdf
+		$cont=0;//contador para meter los id a la variable
 		foreach ($provincias as $clave => $provincia) {			
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){
+					$id[$cont]=$valor[9];
 					echo "<article>";						
 					if($valor[2]!=$provi)
 			    	{
@@ -155,9 +161,12 @@
 
 	function todasLasOfertasConPalabraSinProvincia($palabras){
 		$datos = leerArchivo();	
-		$provi = "";			
+		$provi = "";	
+		$id= array();//donde se guardan los id para sacar en pdf
+		$cont=0;//contador para meter los id a la variable		
 		foreach ($datos as $key => $valor) {
 			if(like($valor[0],$palabras)){
+				$id[$cont]=$valor[9];
 				echo "<article>";	
 				if($valor[2]!=$provi)
 			    {
@@ -175,10 +184,13 @@
 	function todasLasOfertasConPalabraYProvincia($palabras,$provincias){
 		$datos = leerArchivo();	
 		$provi = "";
+		$id= array();//donde se guardan los id para sacar en pdf
+		$cont=0;//contador para meter los id a la variable
 		foreach ($provincias as $clave => $provincia) {		
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){
 					if(like($valor[0],$palabras)){
+						$id[$cont]=$valor[9];
 					echo "<article>";
 					if($valor[2]!=$provi)
 			    	{
