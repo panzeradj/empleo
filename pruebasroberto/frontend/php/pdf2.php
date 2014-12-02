@@ -6,7 +6,7 @@
 		}else{
 			$id=0;
 		} */
-		$id= array(1284385747621 , 1414717449344);
+		$id= array(1284385747621 , 1284386282823);
 	
 	require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
 
@@ -18,6 +18,7 @@
 	$sHTML = <<<PHP
 		<h1></h1>
 		<img src="logo.png" style:"height: 100px;">
+		<hr size="8" >
 PHP;
 
 	$PDF ->WriteHTML($sHTML);
@@ -26,7 +27,7 @@ PHP;
 foreach ($id as $key => $value) {
 	foreach ($datos as $key => $valor) {
 			if($valor[9]==$value){					
-				$titulo=$valor[0];
+				$titulo=utf8_encode($valor[0]);
 					$ano=substr($valor[3],0,4);
 					$mes=substr($valor[3],4,2);
 					$dia=substr($valor[3],6);					           	
@@ -45,10 +46,9 @@ foreach ($id as $key => $value) {
 		{
 			$provincia="Le&oacute;n";
 		}
-	$sHTML = <<<PHP
-		<h1></h1>
+	
 		
-		<p >
+	$sHTML = <<<PHP
 		<table >
 			<tr>
 				<td>
@@ -84,7 +84,9 @@ foreach ($id as $key => $value) {
 			</tr>
 		</table>
 		<a href="$enlace" target='_blank'> $enlace</a>
-		</p>
+
+	<hr size="8" >
+		
 PHP;
 
 	$PDF ->WriteHTML($sHTML);
