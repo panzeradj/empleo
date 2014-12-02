@@ -20,12 +20,12 @@ include("functions.php");
 $datos=leerArchivo();
 foreach ($datos as $key => $valor) {
 	if($valor[9]==$id){					
-		$titulo=$valor[0];
+		$titulo=utf8_encode($valor[0]);
 			$ano=substr($valor[3],0,4);
 			$mes=substr($valor[3],4,2);
 			$dia=substr($valor[3],6);					           	
 		$descripcion=$valor[4];
-		$fuente=$valor[6];
+		//$fuente=$valor[6];
 		$localidad=utf8_encode($valor[7]);
 		$enlace=$valor[11];
 		$provincia=$valor[2];									
