@@ -8,7 +8,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
 	function conexion(){
-		$conexion = new mysqli("127.0.0.1", "root", "", "empleo");
+		$conexion = new mysqli("127.0.0.1", "root", "root", "empleo");
 		if (mysqli_connect_errno()) 
 		{
 	    	die("Error grave: " . mysqli_connect_error());
@@ -18,7 +18,7 @@
 
 	
 	function abrirBBDD(){
-		$conexion = new mysqli("127.0.0.1", "root", "root", "emlpleo");
+		$conexion = new mysqli("127.0.0.1", "root", "root", "empleo");
 		if (mysqli_connect_errno()) 
 		{
 	    	die("Error grave: " . mysqli_connect_error());

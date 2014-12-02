@@ -5,7 +5,7 @@
 		<title>Proyecto CyL</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="style/estilo.css">
-		<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>	 -->
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 	</head>
 	<body>
 		<header>				
@@ -14,7 +14,7 @@
 			
 
 		<div id="map_canvas"></div>
-		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+		
 		<?php
 			function obtenerDatos(){			
 				$conexion=abrirBBDD();			
