@@ -138,8 +138,7 @@
 		foreach ($provincias as $clave => $provincia) {			
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){
-					echo "<article>";	
-					
+					echo "<article>";						
 					if($valor[2]!=$provi)
 			    	{
 			       		echo "<h1 class=separador>".$valor[2]."</h1>";;

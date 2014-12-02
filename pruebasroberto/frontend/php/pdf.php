@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
 
 include("functions.php");
 
-//$id=1415671920715;//identidad de la oferta avila: 1284384664482leon:1415671920715
+
 $datos=leerArchivo();
 foreach ($datos as $key => $valor) {
 	if($valor[9]==$id){					
@@ -27,7 +27,7 @@ foreach ($datos as $key => $valor) {
 		$descripcion=$valor[4];
 		//$fuente=$valor[6];
 		$localidad=utf8_encode($valor[7]);
-		$enlace=$valor[11];
+		$enlace="<a href='../single.php?id=".$valor[9]."'>Enlace a pag web</a>";//modificarlo
 		$provincia=$valor[2];									
 	}								
 }
@@ -83,8 +83,7 @@ $sHTML = <<<PHP
 </table>
 
 $descripcion<br><br><br>
-
-<a href="$enlace" target='_blank'> $enlace</a>
+$enlace
 
 
 

@@ -3,7 +3,7 @@
 <html lang="es">
 	<head>		
 		<title>Proyecto CyL</title>
-		<meta charset="utf-8">
+		
 		<link rel="stylesheet" href="style/estilo.css">
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 	</head>
@@ -19,12 +19,17 @@
 			function obtenerDatos(){			
 				$conexion=abrirBBDD();			
 				$direcciones="";	
-				$ordensql="select nombre , posicion from oficinas";
+				$ordensql="select nombre , posicion, localidad, calle, telefono, email , enlace from oficinas";
 				if($chorizo=$conexion->query($ordensql))
 				{			
-
 					while ($registro = $chorizo->fetch_array()) {	
-						$direcciones= $direcciones.$registro[0]."?".$registro[1].";"; 					
+						if ($registro[3]!="")
+						{
+							$htm="$registro[0] <p> Localidad: $registro[2] <p>Calle: ".utf8_decode($registro[3])." <p> Telefono: $registro[4] <p>Email: $registro[5] <p>";
+							
+						}
+						
+						$direcciones= $direcciones.$registro[0]."?".$registro[1]."?".$htm.";"; 					
 					}				
 				}			
 				cerrarBBDD($conexion);
@@ -44,7 +49,7 @@
 						console.log("1: "+resultado[1] );
 						var coordenadas = resultado[1].split("#");
 						if(coordenadas[0]!=undefined && coordenadas[1]!=undefined ){
-							misPuntos[a] = [""+resultado[0],""+coordenadas[0], ""+coordenadas[1], "icon1", ""+resultado[0]];							
+							misPuntos[a] = [""+resultado[0],""+coordenadas[0], ""+coordenadas[1], "icon1", ""+resultado[2]];							
 						}
 					}					
 				}
