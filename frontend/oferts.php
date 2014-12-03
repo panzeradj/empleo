@@ -12,6 +12,12 @@
 		}else{
 			$provincias = null;
 		}
+
+		if(!empty($_GET['e'])){
+			$email = $_GET['e'];
+		}else{
+			
+		}
 			
 		
 		
