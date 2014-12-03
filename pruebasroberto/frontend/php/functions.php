@@ -117,10 +117,10 @@
 	function todasLasOfertas(){			
 		$ofertas = leerArchivo();
 		$provi = "";
-		$id= array();//donde se guardan los id para sacar en pdf
-		$cont=0;//contador para meter los id a la variable
+		$id=array("");//donde se guardan los id para sacar en pdf
+		
 		foreach ($ofertas as $key => $valor) {	
-			$id[$cont]=$valor[9];
+			array_push($id ,$valor[9]);
 			echo "<article>";	
 			if($valor[2]!=$provi)
 	    	{	    	
@@ -132,6 +132,15 @@
 			echo "</article>";
 			$provi=$valor[2];			
 		}	
+		echo " <form name=a method=POST action=php/pdf2.php >";
+			echo "<input type=hidden value=$id name=id>";
+			echo "<input type=submit name=a >";
+		
+		echo"</form> ";
+		/*foreach ($id as $va) {
+			echo $va;
+		}*/
+		
 	}
 
 
@@ -151,6 +160,7 @@
 			    	}					
 					echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
 					echo "<p>".$valor[4]."</p>";
+
 					echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
 					echo "</article>";	
 						$provi=$valor[2];

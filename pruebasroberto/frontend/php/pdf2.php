@@ -1,13 +1,12 @@
 <?php
 		include('php/functions.php');	
 
-		/*if(!empty($_GET['id'])){
-			$id = $_GET['id'];	
-		}else{
-			$id=0;
-		} */
-		//$id= array(1284385747621 , 1284386282823);
-		$id=$_POST['id'];
+		
+		/*$id=$_POST['id'];
+		foreach ($id as $va ) {
+			echo $va."<br>";
+		}*/
+		
 	
 	require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
 
@@ -25,9 +24,11 @@ PHP;
 	$PDF ->WriteHTML($sHTML);
 	$datos=leerArchivo();
 	////////////////////////////////////////
-foreach ($id as $key => $value) {
+	
+//foreach ($datos as $key ) {
+	
 	foreach ($datos as $key => $valor) {
-			if($valor[9]==$value){					
+			//if($valor[9]==$value){					
 				$titulo=utf8_encode($valor[0]);
 					$ano=substr($valor[3],0,4);
 					$mes=substr($valor[3],4,2);
@@ -37,8 +38,8 @@ foreach ($id as $key => $value) {
 				$localidad=utf8_encode($valor[7]);
 				$enlace=$valor[11];
 				$provincia=$valor[2];									
-			}								
-	}
+			//}								
+	
 		if($provincia=="&Aacutevila")
 		{
 			$provincia= "&Aacute;vila";

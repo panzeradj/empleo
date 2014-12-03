@@ -85,7 +85,6 @@
 		return $datos;
 	}
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////                         FUNCIONES DE BUSQUEDA                              ////////
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -221,7 +220,9 @@
 				//echo "<p>".$valor[9]."</p>";
 				echo "<a href=".$valor[11]." class=enlaceOficina target='_blank' > Enlace oficina de empleo</a>";  
 				echo "<a href='php/pdf.php?id=".$valor[9]."' class='boton pdf' target='_blank'>Ver en PDF</a>";                   				
-				echo "</article>";				
+				echo "</article>";		
+				echo '<a href="https://twitter.com/share" class="twitter-share-button" data-text="'.$valor[0].' :" data-via="empleojcyl" data-lang="es" data-size="large">Twittear</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script","twitter-wjs");</script>';
 
 			}								
 		}		
