@@ -8,7 +8,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
 	function conexion(){
-		$conexion = new mysqli("127.0.0.1", "root", "root", "empleo");
+		$conexion = new mysqli("mysql128int.srv-hostalia.com", "u2823322_empleo", "@cFdI2}5cV", "db2823322_empleo");
 		if (mysqli_connect_errno()) 
 		{
 	    	die("Error grave: " . mysqli_connect_error());
@@ -18,7 +18,7 @@
 
 	
 	function abrirBBDD(){
-		$conexion = new mysqli("127.0.0.1", "root", "root", "empleo");
+		$conexion = new mysqli("mysql128int.srv-hostalia.com", "u2823322_empleo", "@cFdI2}5cV", "db2823322_empleo");
 		if (mysqli_connect_errno()) 
 		{
 	    	die("Error grave: " . mysqli_connect_error());
@@ -38,7 +38,7 @@
 	function leerArchivo()
 	{
 		$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/empleo/ofertas-empleo/1284354353012.csv";
-		$f = fopen($fichero, "r") or die("Error");
+		$f = fopen($fichero, "r") or exit("Error");
 
 		$cuando=fgets($f);	
 		$titulos=fgets($f);
