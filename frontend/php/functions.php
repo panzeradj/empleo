@@ -38,7 +38,8 @@
 	function leerArchivo()
 	{
 		$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/empleo/ofertas-empleo/1284354353012.csv";
-		$f = fopen($fichero, "r") or exit("No puedorrrr abrir el fichero");
+		$f = fopen($fichero, "r") or die("Error");
+
 		$cuando=fgets($f);	
 		$titulos=fgets($f);
 		$contador=0;
