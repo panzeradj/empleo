@@ -7,7 +7,7 @@
 /////////                           FUNCIONES BBDD                                   ////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
-	function conexion(){
+/*	function conexion(){
 		$conexion = new mysqli("mysql128int.srv-hostalia.com", "u2823322_empleo", "@cFdI2}5cV", "db2823322_empleo");
 		if (mysqli_connect_errno()) 
 		{
@@ -29,6 +29,30 @@
 	function  cerrarBBDD($conexion){
 		$conexion->close($conexion);
 	}
+	*/
+
+		function conexion(){
+		$conexion = new mysqli("127.0.0.1", "root", "", "empleo");
+		if (mysqli_connect_errno()) 
+		{
+	    	die("Error grave: " . mysqli_connect_error());
+		}
+		return $conexion;
+	}
+
+	
+	function abrirBBDD(){
+		$conexion = new mysqli("127.0.0.1", "root", "", "empleo");
+		if (mysqli_connect_errno()) 
+		{
+	    	die("Error grave: " . mysqli_connect_error());
+		}
+		return $conexion;
+	}
+
+	function  cerrarBBDD($conexion){
+		$conexion->close();
+	}
 	
 	
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,16 +61,21 @@
 
 	function leerArchivo()
 	{
-		$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/empleo/ofertas-empleo/1284354353012.csv";
-		$f = fopen($fichero, "r") or exit("Error");
+		$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/empleo/ofertas-empleo/1284354353012.csv";		
 
-		$cuando=fgets($f);	
-		$titulos=fgets($f);
+		ini_set('track_errors', 1);
+		$fh = fopen($fichero, 'r');
+		if ( !$fh ) {
+			echo 'fopen failed. reason: ', $php_errormsg;
+		}
+
+		$cuando=fgets($fh);	
+		$titulos=fgets($fh);
 		$contador=0;
 		$tofind = utf8_decode("ÀÁÂÃÄÅàáâãäåÒÓÔÕÖòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ");
 		$replac = "AAAAAAaaaaaaOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNn";
 
-		while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
+		while (( $registro = fgetcsv ( $fh , 1000 , ";" )) !== FALSE ){ 
 			$datos[$contador][0]=$registro[0];
 			$datos[$contador][1]="";//$registro[1];			
 			$datos[$contador][2]=strtr($registro[2],$tofind,$replac);
@@ -61,7 +90,7 @@
 			$datos[$contador][11]=$registro[11];
 		  $contador++;				
 		}		
-		fclose($f);
+		fclose($fh);
 		foreach ($datos as $key => $fila) $provincias[$key]  = $fila[2];
 		//ordenamos ascendente por la columna elegida
 		array_multisort($provincias, SORT_ASC, $datos);
@@ -79,7 +108,7 @@
 			}
 			if($datos[$cont][7]=="")
 			{
-				$datos[$cont][7]=	$datos[$cont][2];
+				$datos[$cont][7]=$datos[$cont][2];
 			}
 			$cont++;
 		}
