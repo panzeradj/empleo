@@ -7,31 +7,7 @@
 /////////                           FUNCIONES BBDD                                   ////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
-/*	function conexion(){
-		$conexion = new mysqli("mysql128int.srv-hostalia.com", "u2823322_empleo", "@cFdI2}5cV", "db2823322_empleo");
-		if (mysqli_connect_errno()) 
-		{
-	    	die("Error grave: " . mysqli_connect_error());
-		}
-		return $conexion;
-	}
-
-	
-	function abrirBBDD(){
-		$conexion = new mysqli("mysql128int.srv-hostalia.com", "u2823322_empleo", "@cFdI2}5cV", "db2823322_empleo");
-		if (mysqli_connect_errno()) 
-		{
-	    	die("Error grave: " . mysqli_connect_error());
-		}
-		return $conexion;
-	}
-
-	function  cerrarBBDD($conexion){
-		$conexion->close($conexion);
-	}
-	*/
-
-		function conexion(){
+	function conexion(){
 		$conexion = new mysqli("127.0.0.1", "root", "", "empleo");
 		if (mysqli_connect_errno()) 
 		{
@@ -291,7 +267,7 @@
 				echo "<p>".$valor[8]."</p>";
 				//echo "<p>".$valor[9]."</p>";
 				echo "<a href=".$valor[11]." class=enlaceOficina target='_blank' > Enlace oficina de empleo</a>";  
-				echo "<a href='php/pdf.php?id=".$valor[9]."' class='pdf' target='_blank'>Ver en PDF</a>";                   				
+				echo "<a href='php/pdf.php?id=".$valor[9]."' class='pdf' target='_blank'>GUARDAR EN PDF</a>";                   				
 				echo "</article>";		
 				echo '<a href="https://twitter.com/share" class="twitter-share-button" data-text="'.$valor[0].' :" data-via="empleojcyl" data-lang="es" data-size="large">Twittear</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script","twitter-wjs");</script>';
