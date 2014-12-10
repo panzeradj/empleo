@@ -43,19 +43,24 @@
 		$replac = "AAAAAAaaaaaaOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNn";
 
 		while (( $registro = fgetcsv ( $f , 1000 , ";" )) !== FALSE ){ 
-			$datos[$contador][0]=$registro[0];
-			$datos[$contador][1]="";//$registro[1];			
-			$datos[$contador][2]=strtr($registro[2],$tofind,$replac);
-			$datos[$contador][3]=$registro[3];
-			$datos[$contador][4]=$registro[4];
-			$datos[$contador][5]=$registro[5];
-			$datos[$contador][6]="";//$registro[6];
-			$datos[$contador][7]=$registro[7];
-			$datos[$contador][8]=$registro[8];
-			$datos[$contador][9]=$registro[9];
-			$datos[$contador][10]="";//$registro[10];
-			$datos[$contador][11]=$registro[11];
-		  $contador++;				
+			if($registro[2]!="Otra")
+			{
+				$datos[$contador][0]=$registro[0];
+				$datos[$contador][1]="";//$registro[1];			
+				$datos[$contador][2]=strtr($registro[2],$tofind,$replac);
+				$datos[$contador][3]=$registro[3];
+				$datos[$contador][4]=$registro[4];
+				$datos[$contador][5]=$registro[5];
+				$datos[$contador][6]="";//$registro[6];
+				$datos[$contador][7]=$registro[7];
+				$datos[$contador][8]=$registro[8];
+				$datos[$contador][9]=$registro[9];
+				$datos[$contador][10]="";//$registro[10];
+				$datos[$contador][11]=$registro[11];
+				 $contador++;	
+			}
+			
+		  			
 		}		
 		fclose($f);
 		foreach ($datos as $key => $fila) $provincias[$key]  = $fila[2];
