@@ -8,7 +8,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
 	function conexion(){
-		$conexion = new mysqli("127.0.0.1", "root", "", "empleo");
+		$conexion = new mysqli("127.0.0.1", "root", "root", "empleo");
 		if (mysqli_connect_errno()) 
 		{
 	    	die("Error grave: " . mysqli_connect_error());
@@ -108,7 +108,7 @@
 			echo "<article>";
 			echo "<h2><a href='single.php?id=".$datos[$numAleatorio][9]."'>".$datos[$numAleatorio][0]."</a></h2>";
 			echo "<p>".substr($datos[$numAleatorio][4],0,500)."</span></em></p><br><a href='single.php?id=".$datos[$numAleatorio][9]."' class='boton rosa'>Mas informacion</a>";
-			echo "</article>";	
+			echo "</article>";				
 		}
 		$datos[$numAleatorio][0];
 	}
@@ -275,6 +275,49 @@
 			echo"<h2> No hay ofertas con esta busqueda</h2>";
 		}
 	}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////                          FUNCIONES OFERTAS EMAIL                           ////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+	function ofertasEmail($email){
+		
+		$conexion = conexion();		
+		$sql = "SELECT palabras,provincias FROM enlist WHERE estado = 1 and email='".$email."';";
+		if($resultado = $conexion->query($sql)){			
+			if($row = $resultado->fetch_array()){				
+
+				if($row[0] == "all" && $row[1] == "all"){							
+					todasLasOfertas();		
+						
+				}else if($row[0] == "all" && $row[1] != "all"){	
+					$provincias = explode(";",$row[1]);						
+					todasLasOfertasDeProvincias($provincias);
+
+				}else if($row[0] != "all" && $row[1] == "all"){							
+					todasLasOfertasConPalabraSinProvincia($row[0]);
+
+				}else if($row[0] != "all" && $row[1] != "all"){	
+					$provincias = explode(";",$row[1]);						
+					todasLasOfertasConPalabraYProvincia($row[0],$provincias);
+
+				}else{							
+					todasLasOfertas();
+				}	
+
+
+
+
+			}
+		}
+
+
+	}
+
+
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

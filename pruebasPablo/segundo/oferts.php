@@ -43,23 +43,24 @@
 				<?php include('parts/searcher.php'); ?>				
 				
 				
-				<?php 				
-					if($busqueda == "" && $provincias == null){
-						//echo "No hay palabras y no hay provincias";
-						todasLasOfertas();			
-					}else if($busqueda == "" && $provincias != null){
-						//echo "No hay palabras pero SI hay provincias";
-						todasLasOfertasDeProvincias($provincias);
-					}else if($busqueda != "" && $provincias == null){
-						//echo "Hay palabras pero NO hay pronvicia";
-						todasLasOfertasConPalabraSinProvincia($busqueda);
-					}else if($busqueda != "" && $provincias != null){
-						//echo "Hay palabras y SI hay provincia";
-						todasLasOfertasConPalabraYProvincia($busqueda,$provincias);
+				<?php 	
+
+					if(!empty($_GET['e'])){						
+						ofertasEmail($_GET['e']);												
 					}else{
-						//echo "Para todo lo demas, muestro todo";
-						todasLasOfertas();
-					}					         				             
+						if($busqueda == "" && $provincias == null){							
+							todasLasOfertas();			
+						}else if($busqueda == "" && $provincias != null){							
+							todasLasOfertasDeProvincias($provincias);
+						}else if($busqueda != "" && $provincias == null){							
+							todasLasOfertasConPalabraSinProvincia($busqueda);
+						}else if($busqueda != "" && $provincias != null){							
+							todasLasOfertasConPalabraYProvincia($busqueda,$provincias);
+						}else{							
+							todasLasOfertas();
+						}		
+					}
+								         				             
 				?>		
 
 				
