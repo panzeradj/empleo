@@ -173,6 +173,7 @@
 	function todasLasOfertas(){			
 		$ofertas = leerArchivo();
 		$provi = "";
+		$contador=0;//para ver si devuelve mas de un dato
 		foreach ($ofertas as $key => $valor) {	
 			if($valor[2]!=$provi)
 	    	{	    	
@@ -183,18 +184,26 @@
 			echo "<p>".$valor[4]."</p>";			                  				
 			echo "</article>";
 				$provi=$valor[2];			
+				$contador++;
 		}	
+		if($contador==0)
+		{
+			echo"<h2> No hay ofertas con esta busqueda</h2>";
+		}
 	}
 
 
 	function todasLasOfertasDeProvincias($provincias){
 		$datos = leerArchivo();
 		$provi = "";
-		foreach ($provincias as $clave => $provincia) {			
+		$contador=0;//para ver si devuelve mas de un dato
+		foreach ($provincias as $clave => $provincia) {		
+
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){
 					if($valor[2]!=$provi)
 			    	{
+
 			       		echo "<h1 class=separador>".$valor[2]."</h1>";;
 			    	}
 					echo "<article class='oferts'>";										
@@ -203,14 +212,20 @@
 					echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
 					echo "</article>";	
 						$provi=$valor[2];
+						$contador++;
 				}					
 			}
+		}
+		if($contador==0)
+		{
+			echo"<h2> No hay ofertas con esta busqueda</h2>";
 		}
 	}
 
 	function todasLasOfertasConPalabraSinProvincia($palabras){
 		$datos = leerArchivo();	
-		$provi = "";			
+		$provi = "";		
+		$contador=0;//para ver si devuelve mas de un dato	
 		foreach ($datos as $key => $valor) {
 			if(like($valor[0],$palabras)){
 				if($valor[2]!=$provi)
@@ -222,14 +237,20 @@
 				echo "<p>".$valor[4]."</p>";	
 				echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
 				echo "</article>";
-				$provi=$valor[2];	
+				$provi=$valor[2];
+				$contador++;	
 			}					
-		}		
+		}	
+		if($contador==0)
+		{
+			echo"<h2> No hay ofertas con esta busqueda</h2>";
+		}
 	}
 
 	function todasLasOfertasConPalabraYProvincia($palabras,$provincias){
 		$datos = leerArchivo();	
 		$provi = "";
+		$contador=0;//para ver si devuelve mas de un dato
 		foreach ($provincias as $clave => $provincia) {		
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){
@@ -244,9 +265,14 @@
 						echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
 						echo "</article>";	
 						$provi=$valor[2];
+						$contador++;
 					}	
 				}								
 			}
+		}
+		if($contador==0)
+		{
+			echo"<h2> No hay ofertas con esta busqueda</h2>";
 		}
 	}
 

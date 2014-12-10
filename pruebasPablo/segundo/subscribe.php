@@ -35,8 +35,6 @@
 			<header id="subscribe">
 				<h1>Alertas por Email <span>Guarda tus preferencias y mantente al dia </span></h1>
 			</header>
-			
-
 
 			<section>				
 				

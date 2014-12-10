@@ -89,7 +89,7 @@
 			<section>
 				<article id="principal">
 					<h1>Ofertas de Empleo disponibles <span>Encuentra empleo en CyL de forma rapida y efectiva</span></h1>
-						
+					
 					<!-- Muestro ofertas aleatorias -->	
 					<?php ofertasAleatorias(); ?>
 				</article>
@@ -103,7 +103,6 @@
 					</div>					
 				</article>
 			</section>		
-
 			<!-- FOOTER -->
 			<?php include('parts/footer.php'); ?>			
 		</main>			
