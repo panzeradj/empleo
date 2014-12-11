@@ -15,34 +15,34 @@
 
 		if(!empty($_GET['e'])){
 			$email = $_GET['e'];
-		}else{
-			
-		}
-			
-		
-		
+		}		
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
 	<head>		
-		<title>Proyecto CyL</title>
-		<meta charset="LATIN-1">
-		<link rel="stylesheet" href="style/estilo.css">	
+		<title>EmpleoJCYL.es</title>
+		<link rel="icon" href="images/favicon.png" type="image/x-icon">
+		<link rel="stylesheet" type="text/css" href="css/estilo.css">		
+		<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script> -->
 	</head>
-	<body>
-		<header id="jobs">			
-			<!-- Menu Superior --> 
-			<?php include('parts/header.php'); ?>
-		</header>
-		
-		<!-- Buscador -->
-		<?php include('parts/searcher.php'); ?>
+	<body>	
+		<main>
+			
+			<!-- NAV -->
+			<?php include('parts/nav.php'); ?>				
 
-		<section id="empleo">
-			<div class="centrado">		
-				<h1>Ofertas de Empleo</h1>				
+			<header id="oferts">
+				<h1>Buscador de Empleo <span>Encuentra trabajo por provincias , palabras clave o ambas</span></h1>
+			</header>
+			
+
+
+			<section>				
+				<!-- BUSCADOR -->
+				<?php include('parts/searcher.php'); ?>				
+				
+				
 				<?php 				
 					if($busqueda == "" && $provincias == null){
 						//echo "No hay palabras y no hay provincias";
@@ -60,10 +60,17 @@
 						//echo "Para todo lo demas, muestro todo";
 						todasLasOfertas();
 					}					         				             
-				?>
-			</div>	
-			<div class="limpio"></div>
-		</section>
-		<footer></footer>
+				?>		
+
+				
+			</section>		
+
+
+
+			<!-- FOOTER -->
+			<?php include('parts/footer.php'); ?>
+			
+			
+		</main>			
 	</body>
 </html>

@@ -7,8 +7,8 @@
 /////////                           FUNCIONES BBDD                                   ////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
-/*	function conexion(){
-		$conexion = new mysqli("mysql128int.srv-hostalia.com", "u2823322_empleo", "@cFdI2}5cV", "db2823322_empleo");
+	function conexion(){
+		$conexion = new mysqli("127.0.0.1", "root", "root", "empleo");
 		if (mysqli_connect_errno()) 
 		{
 	    	die("Error grave: " . mysqli_connect_error());
@@ -18,31 +18,7 @@
 
 	
 	function abrirBBDD(){
-		$conexion = new mysqli("mysql128int.srv-hostalia.com", "u2823322_empleo", "@cFdI2}5cV", "db2823322_empleo");
-		if (mysqli_connect_errno()) 
-		{
-	    	die("Error grave: " . mysqli_connect_error());
-		}
-		return $conexion;
-	}
-
-	function  cerrarBBDD($conexion){
-		$conexion->close($conexion);
-	}
-	*/
-
-		function conexion(){
-		$conexion = new mysqli("127.0.0.1", "root", "", "empleo");
-		if (mysqli_connect_errno()) 
-		{
-	    	die("Error grave: " . mysqli_connect_error());
-		}
-		return $conexion;
-	}
-
-	
-	function abrirBBDD(){
-		$conexion = new mysqli("127.0.0.1", "root", "", "empleo");
+		$conexion = new mysqli("127.0.0.1", "root", "root", "empleo");
 		if (mysqli_connect_errno()) 
 		{
 	    	die("Error grave: " . mysqli_connect_error());
@@ -76,19 +52,23 @@
 		$replac = "AAAAAAaaaaaaOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNn";
 
 		while (( $registro = fgetcsv ( $fh , 1000 , ";" )) !== FALSE ){ 
-			$datos[$contador][0]=$registro[0];
-			$datos[$contador][1]="";//$registro[1];			
-			$datos[$contador][2]=strtr($registro[2],$tofind,$replac);
-			$datos[$contador][3]=$registro[3];
-			$datos[$contador][4]=$registro[4];
-			$datos[$contador][5]=$registro[5];
-			$datos[$contador][6]="";//$registro[6];
-			$datos[$contador][7]=$registro[7];
-			$datos[$contador][8]=$registro[8];
-			$datos[$contador][9]=$registro[9];
-			$datos[$contador][10]="";//$registro[10];
-			$datos[$contador][11]=$registro[11];
-		  $contador++;				
+			if($registro[2]!="Otra")
+			{
+				$datos[$contador][0]=$registro[0];
+				$datos[$contador][1]="";//$registro[1];			
+				$datos[$contador][2]=strtr($registro[2],$tofind,$replac);
+				$datos[$contador][3]=$registro[3];
+				$datos[$contador][4]=$registro[4];
+				$datos[$contador][5]=$registro[5];
+				$datos[$contador][6]="";//$registro[6];
+				$datos[$contador][7]=$registro[7];
+				$datos[$contador][8]=$registro[8];
+				$datos[$contador][9]=$registro[9];
+				$datos[$contador][10]="";//$registro[10];
+				$datos[$contador][11]=$registro[11];
+				 $contador++;	
+			}
+		 			
 		}		
 		fclose($fh);
 		foreach ($datos as $key => $fila) $provincias[$key]  = $fila[2];
@@ -114,6 +94,50 @@
 		}
 		return $datos;
 	}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////                           OFERTAS ALEATORIAS                               ////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+	function ofertasAleatorias(){
+		$datos=leerArchivo();
+		for($i=0;$i<3;$i++){
+			$numAleatorio=rand(0,count($datos));
+			//	echo $numAleatorio;
+			echo "<article>";
+			echo "<h2><a href='single.php?id=".$datos[$numAleatorio][9]."'>".$datos[$numAleatorio][0]."</a></h2>";
+			echo "<p>".substr($datos[$numAleatorio][4],0,500)."</span></em></p><br><a href='single.php?id=".$datos[$numAleatorio][9]."' class='boton rosa'>Mas informacion</a>";
+			echo "</article>";				
+		}
+		$datos[$numAleatorio][0];
+	}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////                        OBTENER DATOS OFICINAS                              ////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+	function obtenerDatos(){			
+		$conexion=abrirBBDD();			
+		$direcciones="";	
+		$ordensql="select nombre , posicion, localidad, calle, telefono, email , enlace from oficinas";
+		if($chorizo=$conexion->query($ordensql))
+		{			
+			while ($registro = $chorizo->fetch_array()) {	
+				if ($registro[3]!="")
+				{
+					$htm="$registro[0] <p> Localidad: $registro[2] <p>Calle: ".utf8_decode($registro[3])." <p> Telefono: $registro[4] <p>Email: $registro[5] <p>";
+					
+				}
+				
+				$direcciones= $direcciones.$registro[0]."?".$registro[1]."?".$htm.";"; 					
+			}				
+		}			
+		cerrarBBDD($conexion);
+		return $direcciones;
+	}
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////                         FUNCIONES DE BUSQUEDA                              ////////
@@ -149,84 +173,151 @@
 	function todasLasOfertas(){			
 		$ofertas = leerArchivo();
 		$provi = "";
-		foreach ($ofertas as $key => $valor) {			
-			echo "<article>";	
+		$contador=0;//para ver si devuelve mas de un dato
+		foreach ($ofertas as $key => $valor) {	
 			if($valor[2]!=$provi)
 	    	{	    	
-	    		echo "<h1 class=separador>".$valor[2]."</h1>";
-	    	}					
+	    		echo "<h3 class=separador>".$valor[2]."</h3>";
+	    	}		
+			echo "<article class='oferts'>";								
 			echo "<h2><a href='single.php?id=".$valor[9]."' >".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
-			echo "<p>".$valor[4]."</p>";
-			echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
+			echo "<p>".$valor[4]."</p>";			                  				
 			echo "</article>";
 				$provi=$valor[2];			
+				$contador++;
 		}	
+		if($contador==0)
+		{
+			echo"<h2 class=sinSubasta> No hay ofertas con esta busqueda</h2>";
+		}
 	}
 
 
 	function todasLasOfertasDeProvincias($provincias){
 		$datos = leerArchivo();
 		$provi = "";
-		foreach ($provincias as $clave => $provincia) {			
+		$contador=0;//para ver si devuelve mas de un dato
+		foreach ($provincias as $clave => $provincia) {		
+
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){
-					echo "<article>";	
-					
 					if($valor[2]!=$provi)
 			    	{
+
 			       		echo "<h1 class=separador>".$valor[2]."</h1>";;
-			    	}					
+			    	}
+					echo "<article class='oferts'>";										
 					echo "<h2><a href='single.php?id=".$valor[9]."'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
-					echo "<p>".$valor[4]."</p>";
+					echo "<p>".$valor[4]."</p>";	
 					echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
 					echo "</article>";	
 						$provi=$valor[2];
+						$contador++;
 				}					
 			}
+		}
+		if($contador==0)
+		{
+			echo"<h2 class=sinSubasta> No hay ofertas con esta busqueda</h2>";
 		}
 	}
 
 	function todasLasOfertasConPalabraSinProvincia($palabras){
 		$datos = leerArchivo();	
-		$provi = "";			
+		$provi = "";		
+		$contador=0;//para ver si devuelve mas de un dato	
 		foreach ($datos as $key => $valor) {
 			if(like($valor[0],$palabras)){
-				echo "<article>";	
 				if($valor[2]!=$provi)
 			    {
 			    	echo "<h1 class=separador>".$valor[2]."</h1>";
-			    }						
+			    }
+				echo "<article class='oferts'>";									
 				echo "<h2><a href='single.php?id=".$valor[9]."'  >".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
-				echo "<p>".$valor[4]."</p>";
+				echo "<p>".$valor[4]."</p>";	
 				echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
 				echo "</article>";
-				$provi=$valor[2];	
+				$provi=$valor[2];
+				$contador++;	
 			}					
-		}		
+		}	
+		if($contador==0)
+		{
+			echo"<h2 class=sinSubasta> No hay ofertas con esta busqueda</h2>";
+		}
 	}
 
 	function todasLasOfertasConPalabraYProvincia($palabras,$provincias){
 		$datos = leerArchivo();	
 		$provi = "";
+		$contador=0;//para ver si devuelve mas de un dato
 		foreach ($provincias as $clave => $provincia) {		
 			foreach ($datos as $key => $valor) {
 				if($valor[2]==$provincia){
 					if(like($valor[0],$palabras)){
-					echo "<article>";
-					if($valor[2]!=$provi)
-			    	{
-			    		echo "<h1 class=separador>".$valor[2]."</h1>";
-			    	}							
-					echo "<h2><a href='single.php?id=".$valor[9]."' target='_blank'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
-					echo "<p>".$valor[4]."</p>";
-					echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
-					echo "</article>";	
-					$provi=$valor[2];
+						if($valor[2]!=$provi)
+				    	{
+				    		echo "<h1 class=separador>".$valor[2]."</h1>";
+				    	}
+						echo "<article class='oferts'>";												
+						echo "<h2><a href='single.php?id=".$valor[9]."' target='_blank'>".$valor[0]."</a><span class=provincia> - ".$valor[2]."</span></h2>";				           	
+						echo "<p>".$valor[4]."</p>";	
+						echo "<a href=".$valor[11]." class=enlaceOficina target='_blank'> Enlace oficina de empleo</a>";                   				
+						echo "</article>";	
+						$provi=$valor[2];
+						$contador++;
 					}	
 				}								
 			}
 		}
+		if($contador==0)
+		{
+			echo"<h2 class=sinSubasta> No hay ofertas con esta busqueda</h2>";
+		}
 	}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////                          FUNCIONES OFERTAS EMAIL                           ////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+	function ofertasEmail($email){
+		
+		$conexion = conexion();		
+		$sql = "SELECT palabras,provincias FROM enlist WHERE estado = 1 and email='".$email."';";
+		if($resultado = $conexion->query($sql)){			
+			if($row = $resultado->fetch_array()){				
+
+				if($row[0] == "all" && $row[1] == "all"){							
+					todasLasOfertas();		
+						
+				}else if($row[0] == "all" && $row[1] != "all"){	
+					$provincias = explode(";",$row[1]);						
+					todasLasOfertasDeProvincias($provincias);
+
+				}else if($row[0] != "all" && $row[1] == "all"){							
+					todasLasOfertasConPalabraSinProvincia($row[0]);
+
+				}else if($row[0] != "all" && $row[1] != "all"){	
+					$provincias = explode(";",$row[1]);						
+					todasLasOfertasConPalabraYProvincia($row[0],$provincias);
+
+				}else{							
+					todasLasOfertas();
+				}	
+
+
+
+
+			}
+		}
+
+
+	}
+
+
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -249,7 +340,7 @@
 				echo "<p>".$valor[8]."</p>";
 				//echo "<p>".$valor[9]."</p>";
 				echo "<a href=".$valor[11]." class=enlaceOficina target='_blank' > Enlace oficina de empleo</a>";  
-				echo "<a href='php/pdf.php?id=".$valor[9]."' class='boton pdf' target='_blank'>Ver en PDF</a>";                   				
+				echo "<a href='php/pdf.php?id=".$valor[9]."' class='pdf' target='_blank'>GUARDAR EN PDF</a>";                   				
 				echo "</article>";		
 				echo '<a href="https://twitter.com/share" class="twitter-share-button" data-text="'.$valor[0].' :" data-via="empleojcyl" data-lang="es" data-size="large">Twittear</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script","twitter-wjs");</script>';

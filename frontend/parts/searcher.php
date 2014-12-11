@@ -1,8 +1,8 @@
 <section id="buscador">
-	<article class="centrado">
+	
 		<form action="oferts.php" method="POST">
 			<input type="text" id="busqueda" name="busqueda" placeholder="Cocinero">
-			<input type="submit" value="buscar">
+			<input type="submit" value="buscar"class="rosa">
 			<div id="buscador_provincias">
 				<input type="checkbox" name="provincia[0]" value="&Aacutevila">&Aacutevila</input>
            		<input type="checkbox" name="provincia[1]" value="Burgos">Burgos</input>
@@ -15,5 +15,5 @@
             	<input type="checkbox" name="provincia[8]" value="Zamora">Zamora</input>
 			</div>			
 		</form>
-	</article>
+
 </section>

@@ -25,8 +25,8 @@
 								for (a in direccion){	
 									var resultado = direccion[a].split("?");
 									if(resultado[0]!= undefined && resultado[1]!= undefined ){
-										console.log(resultado[0] );
-										console.log("1: "+resultado[1] );
+										/*console.log(resultado[0] );
+										console.log("1: "+resultado[1] );*/
 										var coordenadas = resultado[1].split("#");
 										if(coordenadas[0]!=undefined && coordenadas[1]!=undefined ){
 											misPuntos[a] = [""+resultado[0],""+coordenadas[0], ""+coordenadas[1], "icon1", ""+resultado[2]];							
@@ -89,7 +89,7 @@
 			<section>
 				<article id="principal">
 					<h1>Ofertas de Empleo disponibles <span>Encuentra empleo en CyL de forma rapida y efectiva</span></h1>
-					
+						
 					<!-- Muestro ofertas aleatorias -->	
 					<?php ofertasAleatorias(); ?>
 				</article>
@@ -103,6 +103,7 @@
 					</div>					
 				</article>
 			</section>		
+
 			<!-- FOOTER -->
 			<?php include('parts/footer.php'); ?>			
 		</main>			

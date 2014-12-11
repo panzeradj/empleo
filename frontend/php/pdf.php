@@ -1,21 +1,13 @@
 <?php
-		include('php/functions.php');	
+	require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
+	include('functions.php');	
 
-		if(!empty($_GET['id'])){
-			$id = $_GET['id'];	
-		}else{
-			$id=0;
-		} 
+	if(!empty($_GET['id'])){
+		$id = $_GET['id'];	
+	}else{
+		$id=0;
+	} 	
 		
-		
-
-
-// incluimos la libreria
-
-require_once(dirname(__FILE__).'/html2pdf/html2pdf.class.php');
-
-include("functions.php");
-
 
 $datos=leerArchivo();
 foreach ($datos as $key => $valor) {
@@ -44,7 +36,7 @@ if($provincia=="Le&oacuten")
 // almacenamos el contenido HTML
 $sHTML = <<<PHP
 <h1></h1>
-<img src="logo.png" style:"height: 100px;">
+<img src="logo.jpg" width="200px">
 <p >
 <table >
 	<tr>
