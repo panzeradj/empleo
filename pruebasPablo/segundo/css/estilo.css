@@ -44,6 +44,12 @@
 	text-decoration: none;	
 }
 
+.sinSubasta{
+	text-align: center;
+	margin: 20px;
+	text-transform: uppercase;
+}
+
 .azul{
 	background: #409ACB;
 }
@@ -158,7 +164,7 @@ header#mapa{
 header#oferts{
 	margin: 20px auto 0px auto;
 	width: 100%;
-	height: 200px;	
+	height: 180px;	
 	overflow: hidden;
 	background: #262626 url('../images/bannery.gif')center no-repeat;
 	 background-position: center center;
@@ -171,7 +177,7 @@ header#oferts{
 header#subscribe{
 	margin: 20px auto 0px auto;
 	width: 100%;
-	height: 200px;	
+	height: 180px;	
 	overflow: hidden;
 	background: #262626 url('../images/bannerp.gif')center no-repeat;
 	 background-position: center center;
@@ -219,7 +225,7 @@ article#welcome #welcome_susbscribe{
 	margin: 20px auto;
 	text-align: center;	
 	overflow: hidden;	
-	width: 40%;	
+	width: 60%;	
 	background: rgba(10,10,10,0.5);
 }
 

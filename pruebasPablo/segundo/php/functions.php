@@ -18,7 +18,7 @@
 
 	
 	function abrirBBDD(){
-		$conexion = new mysqli("127.0.0.1", "root", "", "empleo");
+		$conexion = new mysqli("127.0.0.1", "root", "root", "empleo");
 		if (mysqli_connect_errno()) 
 		{
 	    	die("Error grave: " . mysqli_connect_error());
@@ -188,7 +188,7 @@
 		}	
 		if($contador==0)
 		{
-			echo"<h2> No hay ofertas con esta busqueda</h2>";
+			echo"<h2 class=sinSubasta> No hay ofertas con esta busqueda</h2>";
 		}
 	}
 
@@ -218,7 +218,7 @@
 		}
 		if($contador==0)
 		{
-			echo"<h2> No hay ofertas con esta busqueda</h2>";
+			echo"<h2 class=sinSubasta> No hay ofertas con esta busqueda</h2>";
 		}
 	}
 
@@ -243,7 +243,7 @@
 		}	
 		if($contador==0)
 		{
-			echo"<h2> No hay ofertas con esta busqueda</h2>";
+			echo"<h2 class=sinSubasta> No hay ofertas con esta busqueda</h2>";
 		}
 	}
 
@@ -272,7 +272,7 @@
 		}
 		if($contador==0)
 		{
-			echo"<h2> No hay ofertas con esta busqueda</h2>";
+			echo"<h2 class=sinSubasta> No hay ofertas con esta busqueda</h2>";
 		}
 	}
 
