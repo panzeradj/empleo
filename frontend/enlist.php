@@ -65,6 +65,8 @@
 						echo "<center class='resultado'><img src=images/error.png></center>";
 					}
 				?>	
+
+				<p>* Por favor revise su carpeta de spam</p>
 				
 			</section>
 			<!-- FOOTER -->

@@ -107,7 +107,7 @@
 			//	echo $numAleatorio;
 			echo "<article>";
 			echo "<h2><a href='single.php?id=".$datos[$numAleatorio][9]."'>".$datos[$numAleatorio][0]."</a></h2>";
-			echo "<p>".substr($datos[$numAleatorio][4],0,500)."</span></em></p><br><a href='single.php?id=".$datos[$numAleatorio][9]."' class='boton rosa'>Mas informacion</a>";
+			echo "<p>".substr($datos[$numAleatorio][4],0,500)."</a></span></em></p><br><a href='single.php?id=".$datos[$numAleatorio][9]."' class='boton rosa'>Mas informacion</a>";
 			echo "</article>";				
 		}
 		$datos[$numAleatorio][0];
@@ -360,6 +360,7 @@
 		$sql = "INSERT INTO enlist(estado,frecuencia,nombre,email,palabras,provincias) VALUES(1,0,'".$nombre."','".$email."','".$palabras."','".$provincias."')";
 		if($conexion->query($sql)){
 			$conexion->close();
+			generarEmail();
 			return true;
 		}else{
 			$conexion->close();
@@ -395,9 +396,9 @@
 		$mail->SMTPAuth = true;
 		$mail->SMTPSecure = "ssl";
 		$mail->Port = 465;
-		$mail->Username = "empleodatosabiertos@gmail.com"; 
-		$mail->Password = "chemaesunchulazo"; // Contraseña
-		$mail->From = "bytelchuscom@gmail.com";
+		$mail->Username = "empleojcyles@gmail.com"; 
+		$mail->Password = "DataTravel*"; // Contraseña
+		$mail->From = "empleojcyles@gmail.com";
 		$mail->FromName = "EmpleoJCYL.es";
 		$mail->Timeout=30;
 		$mail->AddAddress($email); // email destinatario
@@ -413,10 +414,10 @@
 		}    
 
 		if(!$exito){
-			echo "Problemas enviando correo electrónico a ";
-			echo "<br/>".$mail->ErrorInfo;  
+			//echo "Problemas enviando correo electrónico a ";
+			//echo "<br/>".$mail->ErrorInfo;  
 		}else{
-			echo "Mensaje enviado correctamente";
+			//echo "Mensaje enviado correctamente";
 		} 
 	  }//Fin funcion mandarEmail
 

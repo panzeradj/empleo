@@ -395,9 +395,9 @@
 		$mail->SMTPAuth = true;
 		$mail->SMTPSecure = "ssl";
 		$mail->Port = 465;
-		$mail->Username = "empleodatosabiertos@gmail.com"; 
-		$mail->Password = "chemaesunchulazo"; // Contraseña
-		$mail->From = "bytelchuscom@gmail.com";
+		$mail->Username = "empleojcyless@gmail.com"; 
+		$mail->Password = "DataTravel*"; // Contraseña
+		$mail->From = "empleojcyless@gmail.com";
 		$mail->FromName = "EmpleoJCYL.es";
 		$mail->Timeout=30;
 		$mail->AddAddress($email); // email destinatario
