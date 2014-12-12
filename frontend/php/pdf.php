@@ -19,7 +19,8 @@ foreach ($datos as $key => $valor) {
 		$descripcion=$valor[4];
 		//$fuente=$valor[6];
 		$localidad=utf8_encode($valor[7]);
-		$enlace="<a href='../single.php?id=".$valor[9]."'>Enlace a pag web</a>";//modificarlo
+		//$enlace="<a href='../single.php?id=".$valor[9]."'>Enlace a pag web</a>";//modificarlo
+		$enlace="<a href='".$valor[11]."' target='_blank' > Enlace a oficina de empleo </a>";
 		$provincia=$valor[2];									
 	}								
 }
