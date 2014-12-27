@@ -8,7 +8,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
 	function conexion(){
-		$conexion = new mysqli("127.0.0.1", "root", "root", "empleo");
+		$conexion = new mysqli("127.0.0.1", "root", "", "empleo");
 		if (mysqli_connect_errno()) 
 		{
 	    	die("Error grave: " . mysqli_connect_error());
@@ -18,7 +18,7 @@
 
 	
 	function abrirBBDD(){
-		$conexion = new mysqli("127.0.0.1", "root", "root", "empleo");
+		$conexion = new mysqli("127.0.0.1", "root", "", "empleo");
 		if (mysqli_connect_errno()) 
 		{
 	    	die("Error grave: " . mysqli_connect_error());
@@ -52,30 +52,25 @@
 		$replac = "AAAAAAaaaaaaOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNn";
 
 		while (( $registro = fgetcsv ( $fh , 1000 , ";" )) !== FALSE ){ 
-			if($registro[2]!="Otra")
+			if($registro[2]!="")
 			{
-				$datos[$contador][0]=$registro[0];
-				$datos[$contador][1]="";//$registro[1];			
+				$datos[$contador][0]=$registro[0];					
 				$datos[$contador][2]=strtr($registro[2],$tofind,$replac);
 				$datos[$contador][3]=$registro[3];
 				$datos[$contador][4]=$registro[4];
-				$datos[$contador][5]=$registro[5];
-				$datos[$contador][6]="";//$registro[6];
+				$datos[$contador][5]=$registro[5];				
 				$datos[$contador][7]=$registro[7];
 				$datos[$contador][8]=$registro[8];
-				$datos[$contador][9]=$registro[9];
-				$datos[$contador][10]="";//$registro[10];
+				$datos[$contador][9]=$registro[9];				
 				$datos[$contador][11]=$registro[11];
 				 $contador++;	
 			}
 		 			
 		}		
 		fclose($fh);
-		foreach ($datos as $key => $fila) $provincias[$key]  = $fila[2];
-		//ordenamos ascendente por la columna elegida
+		foreach ($datos as $key => $fila) $provincias[$key]  = $fila[2];		
 		array_multisort($provincias, SORT_ASC, $datos);
-		$cont=0;
-		// AQUI ME DICE EL PUTO EL UNDEFINED OFFSET 
+		$cont=0;		
 		while($cont<$contador)
 		{
 			if($datos[$cont][2]=='Avila')
@@ -105,9 +100,10 @@
 		for($i=0;$i<3;$i++){
 			$numAleatorio=rand(0,count($datos));
 			//	echo $numAleatorio;
-			echo "<article>";
+			echo "<article class=aleatorio>";
 			echo "<h2><a href='single.php?id=".$datos[$numAleatorio][9]."'>".$datos[$numAleatorio][0]."</a></h2>";
-			echo "<p>".substr($datos[$numAleatorio][4],0,500)."</a></span></em></p><br><a href='single.php?id=".$datos[$numAleatorio][9]."' class='boton rosa'>Mas informacion</a>";
+			echo "<p>".substr(strip_tags($datos[$numAleatorio][4], '<p><em><b><strong>'),0,500)."</p></em></b></strong>[...]<br><a href='single.php?id=".$datos[$numAleatorio][9]."' class='boton rosa'>Mas informacion</a>";
+
 			echo "</article>";				
 		}
 		$datos[$numAleatorio][0];

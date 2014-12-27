@@ -18,16 +18,11 @@
 			</header>
 
 			<section>
-				<article id="principal">
-					<h1>Dise&ntilde;o && Desarrollo <span>Ellos son los que hacen posible empleojcyl.es</span></h1>
-						
-					
-				</article>		
-
+				
 
 
 				<article id="principal">
-					<h1>BUGS && MEJORAS <span>no te quedes callado podemos mejorar</span></h1>
+					<h1>ERRORES && MEJORAS <span>no te quedes callado podemos mejorar</span></h1>
 					<p class="email">Si has encontrado algun error o tienes alguna idea para mejorar este servicio no dudes en contactar con nosotros 
 					a traves de nuestro email:</p>
 						<a href="mailto:name@email.com">info@empleojcyl.es</a>
