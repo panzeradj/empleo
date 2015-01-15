@@ -4,7 +4,7 @@
 <body>
 <h1>Leyendo un fichero remoto</h1>
 <?php
-	$conexion = new mysqli("127.0.0.1", "root", "root", "empleo");
+	$conexion = new mysqli("127.0.0.1", "root", "root", "turismo");
 
 		// Aqui se encuentra el fichero
 		$fichero="http://www.datosabiertos.jcyl.es/web/jcyl/risp/es/otros/municipios/1284278782067.csv";
