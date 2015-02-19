@@ -1,5 +1,0 @@
-oficina soria:https://www.google.es/maps/@41.7648922,-2.466993,3a,90y,20.39h,76.74t/data=!3m4!1e1!3m2!1sLvvWfqJ98daCOQjJf-Ua-w!2e0 
-almazan : https://www.google.es/maps/@41.4881751,-2.5284831,3a,75y,292.8h,66.62t/data=!3m4!1e1!3m2!1sbMixhFhKL_pTWTMSfeLQJA!2e0
-el burgo de osma: https://www.google.es/maps/@41.587809,-3.067867,3a,90y,28.23h,87.38t/data=!3m4!1e1!3m2!1sqUeoTCdn4iwwQ7fM2FpZkw!2e0!6m1!1e1
-aranda de duero:https://www.google.es/maps/place/Calle+San+Esteban,+10,+09400+Aranda+de+Duero,+Burgos/@41.667911,-3.6883234,3a,20.3y,111.42h,84.33t/data=!3m4!1e1!3m2!1sVCV9m3MS-lN1kqxBEQ83vg!2e0!4m2!3m1!1s0xd44265bf679cbc1:0xa9c6f7371180088c!6m1!1e1
-salas de los infantes: https://www.google.es/maps/@42.0231492,-3.2865981,3a,84.1y,316.85h,83.72t/data=!3m4!1e1!3m2!1s86y83qtj91fARjkExivvHw!2e0!6m1!1e1
